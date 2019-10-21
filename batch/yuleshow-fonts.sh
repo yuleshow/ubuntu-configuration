@@ -1,0 +1,7 @@
+# fonts
+sudo apt install ttf-mscorefonts-installer -y
+cd ~
+git clone https://www.github.com/yuleshow/chinese-fonts.git
+sudo ln -s ~/chinese-fonts /usr/share/fonts/chinese-fonts
+sudo ln -s ~/ubuntu-configuration/yuleshow-extra-fonts /usr/share/fonts/yuleshow-extra-fonts
+sudo fc-cache -f -v

@@ -1,2 +1,2 @@
-# ubuntu-configuration
-personal ubuntu configuration for auto install
+# ubuntu-configuration-
+This is just a person ubuntu configuration 

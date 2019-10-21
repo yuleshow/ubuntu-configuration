@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon[en_US]=/opt/FreeFileSync/Resources/FFS_tray_24x24.png
+Name[en_US]=Free File Sync
+Exec=/opt/FreeFileSync/FreeFileSync
+Name=Free File Sync
+Icon=/opt/FreeFileSync/Resources/FFS_tray_24x24.png

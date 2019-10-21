@@ -1,0 +1,8 @@
+#!/usr/bin/perl
+
+my @pm_files = glob '*.HEIC';
+
+foreach $arg (@pm_files) {
+    $filename = substr($arg, 0, 8);
+    system "tifig -v -p $filename.HEIC $filename.JPEG";
+}

@@ -1,0 +1,16 @@
+sudo apt install unrar -y
+sudo apt install neofetch -y
+
+sudo pip3 install thefuck 
+
+
+sudo apt install whois -y
+sudo apt install gimp -y
+sudo apt install gimp-help-en -y
+sudo apt install puddletag -y
+
+sudo apt install djview -y
+sudo apt install audacity -y
+
+# for backup
+sudo apt install duplicity -y
