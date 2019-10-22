@@ -35,7 +35,7 @@ sudo apt-get install albert -y
 # plank dock
 sudo apt-get install plank -y
 wget http://www.yuleshow.com/files/Macbuntu/Macbuntu-plank-themes.tar.gz
-sudo tar -xvf ~/ubuntu-configuration/Macbuntu/Macbuntu-plank-themes.tar.gz --strip 1 -C /usr/share/plank/themes
+sudo tar -xvf Macbuntu-plank-themes.tar.gz --strip 1 -C /usr/share/plank/themes
 rm Macbuntu-plank-themes.tar.gz
 
 # sudo apt-get install macbuntu-os-plank-theme-v1804 -y
