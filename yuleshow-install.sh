@@ -4,7 +4,7 @@ sudo apt upgrade -y
 sudo apt install cmake git yum snap -y
 sudo apt install python3-dev python3-pip python-pip -y
 sudo apt install automake -y
-
+sudo apt install xz-utils # for tar.xz
 
 
 
@@ -35,6 +35,7 @@ sudo cp ubuntu-configuration/bin/* /usr/local/bin
 ~/ubuntu-configuration/batch/yuleshow-calibre.sh
 ~/ubuntu-configuration/batch/yuleshow-guake.sh
 ~/ubuntu-configuration/batch/yuleshow-macbuntu.sh
+~/ubuntu-configuration/batch/yuleshow-xdm.sh
 ~/ubuntu-configuration/batch/yuleshow-youtube.sh
 ~/ubuntu-configuration/batch/yuleshow-wordpress.sh
 ~/ubuntu-configuration/batch/yuleshow-ipadcharge.sh
