@@ -1,6 +1,7 @@
 # Initial
 sudo apt update
-sudo apt upgrade -y 
+sudo apt upgrade -y
+sudo apt install ubuntu-restricted-extras 
 sudo apt install cmake git yum snap -y
 sudo apt install python3-dev python3-pip python-pip -y
 sudo apt install automake -y
