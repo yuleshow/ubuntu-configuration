@@ -18,7 +18,7 @@ sudo dpkg -i multiarch-support_2.28-10_i386.deb
 rm multiarch-support_2.28-10_i386.deb
 sudo dpkg --add-architecture i386
 sudo apt --fix-broken install -y
-sudo apt install libnss-mdns:i386 python-gtk2
+sudo apt install libnss-mdns:i386 python-gtk2 -y
 
 wget https://media.codeweavers.com/pub/crossover/cxlinux/demo/crossover_18.1.0-1.deb
 sudo dpkg -i crossover_18.1.0-1.deb
