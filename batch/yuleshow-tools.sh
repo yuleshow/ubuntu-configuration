@@ -14,3 +14,4 @@ sudo apt install audacity -y
 
 # for backup
 sudo apt install duplicity -y
+sudo snap install indicator-sensors
