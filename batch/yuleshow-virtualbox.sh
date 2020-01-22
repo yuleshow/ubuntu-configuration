@@ -4,4 +4,9 @@
 # rm virtualbox*.deb
 # sudo apt --fix-broken install -y
 
-sudo apt install virtualbox -y
+wget https://download.virtualbox.org/virtualbox/6.1.2/virtualbox-6.1_6.1.2-135662~Ubuntu~eoan_amd64.deb
+sudo dpkg -i virtualbox*.deb
+rm virtualbox*.deb
+sudo apt --fix-broken install -y
+
+# sudo apt install virtualbox -y

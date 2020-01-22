@@ -14,4 +14,9 @@ sudo apt install audacity -y
 
 # for backup
 sudo apt install duplicity -y
+
+# temperature monitor
 sudo snap install indicator-sensors
+
+# desktop item editor
+sudo apt install alacarte -y
