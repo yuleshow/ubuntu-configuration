@@ -20,3 +20,6 @@ sudo snap install indicator-sensors
 
 # desktop item editor
 sudo apt install alacarte -y
+
+sudo add-apt-repository ppa:flacon
+sudo apt install flacon -y
