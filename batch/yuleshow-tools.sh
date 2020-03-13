@@ -23,3 +23,5 @@ sudo apt install alacarte -y
 
 sudo add-apt-repository ppa:flacon
 sudo apt install flacon -y
+
+sudo snap install --candidate freac

@@ -1,4 +1,5 @@
-sudo apt install emacs ispell -y
+sudo apt install emacs -y
+sudo apt install ispell -y
 cd ~
 git clone https://github.com/yuleshow/yuleshow-dotemacs.git
 ln -s yuleshow-dotemacs ~/.emacs.d
