@@ -4,7 +4,7 @@ sudo apt upgrade -y
 sudo apt install ubuntu-restricted-extras -y
 sudo apt install cmake -y
 sudo apt install git -y
-sudo apt install yum -y
+# sudo apt install yum -y
 sudo apt install snap -y
 sudo apt install python3-dev -y
 sudo apt install python3-pip -y
