@@ -8,7 +8,7 @@ sudo apt install git -y
 sudo apt install snap -y
 sudo apt install python3-dev -y
 sudo apt install python3-pip -y
-sudo apt install python-pip -y
+# sudo apt install python-pip -y
 sudo apt install automake -y
 sudo apt install xz-utils -y # for tar.xz
 
