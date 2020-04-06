@@ -24,3 +24,5 @@ sudo apt install python-gtk2 -y
 wget https://media.codeweavers.com/pub/crossover/cxlinux/demo/crossover_19.0.1-1.deb
 sudo dpkg -i crossover_*.deb
 rm crossover_*.deb
+sudo apt --fix-broken install -y
+sudo apt install -f
