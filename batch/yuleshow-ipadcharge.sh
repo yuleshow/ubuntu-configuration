@@ -7,4 +7,4 @@ sudo make install
 sudo ldconfig
 cd ..
 rm -r -f ipad_charge
-sudo cp ubuntu-configuration/bin/ipad_charge  /usr/bin/.
+# sudo cp ubuntu-configuration/bin/ipad_charge  /usr/bin/.
