@@ -26,3 +26,4 @@ sudo dpkg -i crossover_*.deb
 rm crossover_*.deb
 sudo apt --fix-broken install -y
 sudo apt install -f
+sudo apt-get install libgsm1:i386 libopenal1:i386 libpulse0:i386 libudev1:i386 libxslt1.1:i386 -y

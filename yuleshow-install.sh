@@ -44,6 +44,7 @@ sudo cp ubuntu-configuration/bin/* /usr/local/bin
 ~/ubuntu-configuration/batch/yuleshow-rename.sh
 ~/ubuntu-configuration/batch/yuleshow-iphone.sh
 ~/ubuntu-configuration/batch/yuleshow-calibre.sh
+~/ubuntu-configuration/batch/yuleshow-baidu.sh
 ~/ubuntu-configuration/batch/yuleshow-guake.sh
 ~/ubuntu-configuration/batch/yuleshow-macbuntu.sh
 ~/ubuntu-configuration/batch/yuleshow-xdm.sh
