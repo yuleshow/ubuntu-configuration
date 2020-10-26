@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="../styles/settings.css" rel="stylesheet">
+  <meta charset="UTF-8">
+</head>
+
+<body class="page">
+  <div class="setting-top-bar">
+    <div class="top-bar-left">
+      <img class="top-bar-icon" src="../../../assets/icon.png">
+    </div>
+    <div class="top-bar-right">
+      <button type="button" class="upgrade-btn" id="upgrade-btn" onclick="upgrade()">检查更新</button>
+      <button type="button" class="upgrade-btn" id="feedback-btn" onclick="feedback()">联系我们</button>
+    </div>
+    <div class="top-bar-middle">
+      <ul class="title-list">
+        <li>
+          <h1>Electronic Wechat V2.3.1</h1></li>
+        <li>
+          <h1 style="font-size:95%;">Powered by Electron V<span id="top-title-electron-ver">process.versions.electron</span></h1></li>
+      </ul>
+    </div>
+  </div>
+  <div class="setting-menu">
+    <section>
+      <ul>
+        <li class="menu-title">
+          <h3 id="app-language-title">语言(重启微信生效)</h3>
+        </li>
+        <li class="menu-desc">
+          <h4 id="app-language-desc">选择你希望使用的默认语言</h4>
+        </li>
+        <li class="menu-button">
+          <select class="" id="app-language-select" onchange="changefun('language')" required>
+            <option value="en_US">English</option>
+            <option value="zh-CN">简体中文</option>
+          </select>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <ul>
+        <li class="menu-title">
+          <h3 id="app-recall-title">阻止消息撤回</h3>
+        </li>
+        <li class="menu-desc">
+          <h4 id="app-recall-desc">选择是否阻止微信的消息撤回功能</h4>
+        </li>
+        <li class="menu-button">
+          <select class="" id="app-recall-select" onchange="changefun('recall')">
+            <option value="on">On</option>
+            <option value="off">Off</option>
+          </select>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <ul>
+        <li class="menu-title">
+          <h3 id="app-notification-title">点击通知打开微信</h3>
+        </li>
+        <li class="menu-desc">
+          <h4 id="app-notification-desc">选择是否允许通过点击消息通知打开微信</h4>
+        </li>
+        <li class="menu-button">
+          <select class="" id="app-notification-select" onchange="changefun('notification')">
+            <option value="on">On</option>
+            <option value="off">Off</option>
+          </select>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <ul>
+        <li class="menu-title">
+          <h3 id="app-frame-title">无边框(重启微信生效)</h3>
+        </li>
+        <li class="menu-desc">
+          <h4 id="app-frame-desc">选择是否隐藏边框</h4>
+        </li>
+        <li class="menu-button">
+          <select class="" id="app-frame-select" onchange="changefun('frame')">
+            <option value="on">On</option>
+            <option value="off">Off</option>
+          </select>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <ul>
+        <li class="menu-title">
+          <h3 id="app-close-title">关闭主面板</h3>
+        </li>
+        <li class="menu-desc">
+          <h4 id="app-close-desc">选择关闭主面板是最小化到系统托盘还是退出程序</h4>
+        </li>
+        <li class="menu-button">
+          <select class="" id="app-close-select" onchange="changefun('close')">
+            <option value="on">最小化到系统托盘(close)</option>
+            <option value="off">退出程序(exit)</option>
+          </select>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <ul>
+        <li class="menu-title">
+          <h3 id="app-update-title">自动检查更新</h3>
+        </li>
+        <li class="menu-desc">
+          <h4 id="app-update-desc">打开程序时是否自动检查更新</h4>
+        </li>
+        <li class="menu-button">
+          <select class="" id="app-update-select" onchange="changefun('update')">
+            <option value="on">On</option>
+            <option value="off">Off</option>
+          </select>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <ul>
+        <li class="menu-title">
+          <h3 id="app-proxy-title">代理设置(重启微信生效)</h3>
+        </li>
+        <li class="menu-desc">
+          <h4 id="app-proxy-desc">选择代理模式</h4>
+        </li>
+        <li class="menu-button">
+          <select class="" id="app-proxy-select" onchange="changefun('proxy')">
+            <option value="on">跟随系统(Follow the system)</option>
+            <option value="off">直接连接(no proxy)</option>
+            <option value="setProxy">指定代理(set proxy)</option>
+          </select>
+          <input oninput="setProxy()" id="app-proxy-input" type="text" placeholder='sock5://127.0.0.1:1080'>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <ul>
+        <li class="menu-title">
+          <h3 id="app-instance-title">是否允许开启多个实例</h3>
+        </li>
+        <li class="menu-desc">
+          <h4 id="app-instance-desc">多个实例可以同时登录不同帐号</h4>
+        </li>
+        <li class="menu-button">
+          <select id="app-instance-select"  onchange="changefun('instance')">
+            <option value="on">On</option>
+            <option value="off">Off</option>
+          </select>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <ul>
+        <li class="menu-title">
+          <h3 id="app-icon-title">Flash 路径[不知道是啥，可能不会上线了]</h3>
+        </li>
+        <li class="menu-desc">
+          <h4 id="app-icon-desc">默认路径</h4>
+        </li>
+        <li class="menu-button">
+          <input type="text" placeholder="File Path...">
+        </li>
+      </ul>
+    </section>
+    <section id="app-tray">
+      <ul>
+        <li class="menu-title">
+          <h3 id="app-tray-title">托盘图标颜色（黑/白）</h3>
+        </li>
+        <li class="menu-desc">
+          <h4 id="app-tray-desc">选择一个适合当前主题的颜色</h4>
+        </li>
+        <li class="menu-button">
+          <select id="app-tray-select" onchange="changefun('tray')">
+            <option value="black">◆</option>
+            <option value="white">◇</option>
+          </select>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <ul>
+        <li class="menu-title">
+          <h3 id="app-blur-title">失焦处理</h3>
+        </li>
+        <li class="menu-desc">
+          <h4 id="app-blur-desc">在失去焦点的时候是否进入挂起状态</h4>
+        </li>
+        <li class="menu-button">
+          <select id="app-blur-select"  onchange="changefun('blur')">
+            <option value="on">On</option>
+            <option value="off">Off</option>
+          </select>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <ul>
+        <li class="menu-title">
+          <h3 id="app-select-notification-body-title">通知</h3>
+        </li>
+        <li class="menu-desc">
+          <h4 id="app-select-notification-body-desc">选择通知显示的信息</h4>
+        </li>
+        <li class="menu-button">
+          <select id="app-select-notification-body-select"  onchange="changefun('select-notification-body')">
+            <option value="on">On</option>
+            <option value="off">Off</option>
+          </select>
+        </li>
+        <li class="menu-button" id="app-select-notification-body-select-ex">
+          选择要显示的内容
+          <div class="checkbox">
+            <input type="checkbox" id="app-select-notification-body-select-ex-head" name="head" value="head" onchange="changefun('select-notification-body-ex')" /><label for="app-select-notification-body-select-ex-head">头像</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" id="app-select-notification-body-select-ex-name" name="name" value="name" onchange="changefun('select-notification-body-ex')" /><label for="app-select-notification-body-select-ex-name">名称</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" id="app-select-notification-body-select-ex-teamName" name="teamName" value="teamName" onchange="changefun('select-notification-body-ex')" /><label for="app-select-notification-body-select-ex-teamName">群名称</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" id="app-select-notification-body-select-ex-body" name="body" value="body" onchange="changefun('select-notification-body-ex')" /><label for="app-select-notification-body-select-ex-body">内容</label>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <ul>
+        <li class="menu-title">
+          <h3 id="app-css-title">自定义CSS</h3>
+        </li>
+        <li class="menu-desc">
+          <h4 id="app-css-desc">自定义微信的样式</h4>
+        </li>
+        <li class="menu-button">
+          <select class="" id="app-css-select" onchange="changefun('css')">
+            <option value="on">On</option>
+            <option value="off">Off</option>
+          </select>
+        </li>
+        <li class="menu-button">
+          <textarea oninput="setCss()" id='app-css-input' class="exinput" type="text"></textarea>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <ul>
+        <li class="menu-title">
+          <h3 id="app-zoom-title">界面缩放比例</h3>
+        </li>
+        <li class="menu-desc">
+          <h4 id="app-zoom-desc">使用ctrl+滑轮在主窗体进行缩放</h4>
+        </li>
+        <li class="menu-button">
+          <div class="button" onclick="changefun('zoom')">
+            RESET
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <ul>
+        <li class="menu-title">
+          <h3 id="app-history-title">聊天记录</h3>
+        </li>
+        <li class="menu-desc">
+          <h4 id="app-history-desc">保存聊天记录(重启微信生效)</h4>
+        </li>
+        <li class="menu-button">
+          <select class="" id="app-history-select" onchange="changefun('history')">
+            <option value="on">On</option>
+            <option value="off">Off</option>
+          </select>
+        </li>
+        <li class="menu-button" id="app-history-exinput">
+          <div class="button exinput" onclick="ClearAllHistory()">
+            ClearAll
+          </div>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <script>
+    const AppConfig = require('../../configuration');
+    const {
+      remote,
+      shell,
+      ipcRenderer
+    } = require('electron');
+
+    function $(id) {
+      return document.getElementById(id);
+    }
+
+    const lan = AppConfig.readSettings('language');
+    const recall = AppConfig.readSettings('prevent-recall');
+    const notification = AppConfig.readSettings('click-notification');
+    const instance = AppConfig.readSettings('multi-instance');
+    const trayColor = AppConfig.readSettings('tray-color');
+    const frame = AppConfig.readSettings('frame');
+    const close = AppConfig.readSettings('close');
+    const update = AppConfig.readSettings('update');
+    const proxy = AppConfig.readSettings('proxy');
+    const proxyURl = AppConfig.readSettings('proxy-url');
+    const css = AppConfig.readSettings('css');
+    const cssContent = AppConfig.readSettings('css-content');
+    const blur = AppConfig.readSettings('blur');
+    const selectNotificationBody = AppConfig.readSettings('select-notification-body');
+    const selectNotificationBodyEx = AppConfig.readSettings('select-notification-body-ex');
+    const history = AppConfig.readSettings('history');
+
+    const lanSelect = $('app-language-select');
+    const recallSelect = $('app-recall-select');
+    const notificationSelect = $('app-notification-select');
+    const instanceSelect = $('app-instance-select');
+    const trayColorSelect = $('app-tray-select');
+    const frameSelect = $('app-frame-select');
+    const closeSelect = $('app-close-select');
+    const updateSelect = $('app-update-select');
+    const proxySelect = $('app-proxy-select');
+    const proxyInput = $('app-proxy-input');
+    const CSSSelect = $('app-css-select');
+    const CSSInput = $('app-css-input');
+    const blurSelect = $('app-blur-select');
+    const selectNotificationBodySelect = $('app-select-notification-body-select');
+    const selectNotificationBodyCheckBoxs = $('app-select-notification-body-select-ex')
+    const historySelect = $('app-history-select');
+
+    if(process.platform === 'darwin') {
+      $('process.platform').style.display = 'none';
+    }
+
+    $('top-title-electron-ver').innerText = process.versions.electron;
+    setConfig();
+    //setListeners()
+
+    let Common = require('../../common');
+    if (lan !== 'zh-CN') {
+      setLocale();
+    }
+
+    // function setListeners() {
+    //   lanSelect.addEventListener('change', function() {
+    //     $('app-language-title').innerHTML = 2233
+    //     AppConfig.saveSettings('language', lanSelect.value)
+    //   })
+    //   recallSelect.addEventListener('change', function() {
+    //     AppConfig.saveSettings('prevent-recall', recallSelect.value)
+    //   })
+    //   notificationSelect.addEventListener('change', function() {
+    //     AppConfig.saveSettings('click-notification', notificationSelect.value)
+    //   })
+    //   instanceSelect.addEventListener('change', function() {
+    //     AppConfig.saveSettings('multi-instance', instanceSelect.value)
+    //   })
+    //   trayColorSelect.addEventListener('change', function() {
+    //     AppConfig.saveSettings('tray-color', trayColorSelect.value)
+    //     ipcRenderer.send('refreshIcon')
+    //   })
+    // }
+
+    function changefun(name){
+      switch(name){
+        case 'language':
+          AppConfig.saveSettings('language', lanSelect.value)
+          break
+        case 'recall':
+          AppConfig.saveSettings('prevent-recall', recallSelect.value)
+          break
+        case 'notification':
+          AppConfig.saveSettings('click-notification', notificationSelect.value)
+          break
+        case 'instance':
+          AppConfig.saveSettings('multi-instance', instanceSelect.value)
+          break
+        case 'frame':
+          AppConfig.saveSettings('frame', frameSelect.value)
+          break
+        case 'close':
+          AppConfig.saveSettings('close', closeSelect.value)
+          break
+        case 'update':
+          AppConfig.saveSettings('update', updateSelect.value)
+          break
+        case 'tray':
+          AppConfig.saveSettings('tray-color', trayColorSelect.value)
+          ipcRenderer.send('refreshIcon')
+          break
+        case 'proxy':
+          AppConfig.saveSettings('proxy', proxySelect.value)
+          if(proxySelect.value=='setProxy'){
+            $('app-proxy-input').style.display='block'
+          }
+          else{
+            $('app-proxy-input').style.display='none'
+          }
+          break
+        case 'blur':
+          AppConfig.saveSettings('blur', blurSelect.value)
+          break
+        case 'select-notification-body':
+          AppConfig.saveSettings('select-notification-body', selectNotificationBodySelect.value)
+          break
+        case 'select-notification-body-ex':
+          AppConfig.saveSettings('select-notification-body-ex', getNotificationInfo())
+          break
+        case 'css':
+          AppConfig.saveSettings('css', CSSSelect.value)
+          if(CSSSelect.value=='on'){
+            $('app-css-input').style.display='block'
+            ipcRenderer.send('refreshCss', $('app-css-input').value)
+          }
+          else{
+            $('app-css-input').style.display='none'
+            ipcRenderer.send('refreshCss', '')
+          }
+          break
+        case 'zoom':
+          AppConfig.saveSettings('zoom', 1)
+          ipcRenderer.send('refreshZoom')
+        case 'history':
+          AppConfig.saveSettings('history', historySelect.value)
+      }
+    }
+
+    function setConfig() {
+      $('app-language-select').value = lan;
+      $('app-recall-select').value = recall;
+      $('app-notification-select').value = notification;
+      $('app-instance-select').value = instance;
+      $('app-tray-select').value = trayColor;
+      $('app-frame-select').value = frame;
+      $('app-close-select').value = close;
+      $('app-update-select').value = update;
+      $('app-proxy-select').value = proxy;
+      $('app-proxy-input').value = proxyURl;
+      $('app-proxy-input').style.display = (proxy==='setProxy')?'block':'none'
+      $('app-css-select').value = css;
+      $('app-css-input').value = cssContent?cssContent:'';
+      $('app-css-input').style.display = (css==='on')?'block':'none'
+      $('app-blur-select').value = blur;
+      $('app-select-notification-body-select').value = selectNotificationBody;
+      $('app-select-notification-body-select-ex-head').checked = selectNotificationBodyEx.includes('head')
+      $('app-select-notification-body-select-ex-name').checked = selectNotificationBodyEx.includes('name')
+      $('app-select-notification-body-select-ex-teamName').checked = selectNotificationBodyEx.includes('teamName')
+      $('app-select-notification-body-select-ex-body').checked = selectNotificationBodyEx.includes('body')
+      $('app-history-select').value = history;
+      $('app-history-exinput').style.display = (history==='on')?'block':'none'
+    }
+
+    function setLocale() {
+      $('app-language-title').innerHTML = Common.languageTitle;
+      $('app-language-desc').innerHTML = Common.languageDesc;
+      $('app-recall-title').innerHTML = Common.recallTitle;
+      $('app-recall-desc').innerHTML = Common.recallDesc;
+      $('app-notification-title').innerHTML = Common.notificationTitle;
+      $('app-notification-desc').innerHTML = Common.notificationDesc;
+      $('app-frame-title').innerHTML = Common.frameTitle;
+      $('app-frame-desc').innerHTML = Common.frameDesc;
+      $('app-close-title').innerHTML = Common.closeTitle;
+      $('app-close-desc').innerHTML = Common.closeDesc;
+      $('app-update-title').innerHTML = Common.updateTitle;
+      $('app-update-desc').innerHTML = Common.updateDesc;
+      $('app-proxy-title').innerHTML = Common.proxyTitle;
+      $('app-proxy-desc').innerHTML = Common.proxyDesc;
+      $('app-css-title').innerHTML = Common.cssTitle;
+      $('app-css-desc').innerHTML = Common.cssDesc;
+      $('app-zoom-title').innerHTML = Common.zoomTitle;
+      $('app-zoom-desc').innerHTML = Common.zoomDesc;
+      $('app-instance-title').innerHTML = Common.instanceTitle;
+      $('app-instance-desc').innerHTML = Common.instanceDesc;
+      $('app-icon-title').innerHTML = Common.iconTitle;
+      $('app-icon-desc').innerHTML = Common.iconDesc;
+      $('app-tray-title').innerHTML = Common.trayTitle;
+      $('app-tray-desc').innerHTML = Common.trayDesc;
+      $('upgrade-btn').innerHTML = Common.UPGRADE;
+      $('feedback-btn').innerHTML = Common.FEEDBACK;
+      $('app-blur-title').innerHTML = Common.blurTitle;
+      $('app-blur-desc').innerHTML = Common.blurDesc;
+      $('app-select-notification-body-title').innerHTML = Common.selectNotificationBodyTitle;
+      $('app-select-notification-body-desc').innerHTML = Common.selectNotificationBodyDesc;
+      $('app-history-title').innerHTML = Common.historyTitle;
+      $('app-history-desc').innerHTML = Common.historyDesc;
+    }
+
+    function setProxy(){
+      debounce(()=>{
+        AppConfig.saveSettings('proxy-url', $('app-proxy-input').value)
+      },500)
+    }
+
+    function setCss(){
+      debounce(()=>{
+        AppConfig.saveSettings('css-content', $('app-css-input').value)
+        if(CSSSelect.value === 'on'){
+          ipcRenderer.send('refreshCss', $('app-css-input').value)
+        }
+      },100)
+    }
+
+    function getNotificationInfo(){
+      let inputs = selectNotificationBodyCheckBoxs.getElementsByTagName('input')
+      let result = []
+      for(let item of inputs){
+        if(item.checked){
+          result.push(item.name)
+        }
+      }
+      return result
+    }
+
+    function feedback() {
+      shell.openExternal(Common.FORKER_GITHUB_ISSUES);
+    }
+
+    function upgrade() {
+      ipcRenderer.send('update');
+    }
+
+    function KeyDownFn(evt) {
+      if (evt.keyCode == 73 && evt.ctrlKey && evt.shiftKey) evt.preventDefault();
+    }
+
+    function ClearAllHistory(){
+      if(confirm(Common.clearHistoryConfirm)){
+        ipcRenderer.send('clearHistory')
+      }
+    }
+
+    function debounce(func){//防抖
+      clearTimeout(this.timer)
+      this.timer = setTimeout(()=>{
+        func()
+      },300)
+    }
+
+  </script>
+</body>
+
+</html>
