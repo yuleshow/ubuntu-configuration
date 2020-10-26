@@ -9,8 +9,8 @@
 # sudo cp /usr/share/dupeguru/qt/pe/_block_qt.cpython-35m-x86_64-linux-gnu.so /usr/share/dupeguru/qt/pe/_block_qt.cpython-37m-x86_64-linux-gnu.so
 # sudo rm dupeguru_4.0.3~xenial_amd64.deb
 
-
 wget http://www.yuleshow.com/files/ubuntu/dupeguru-master_build_2020-04-16.tar.gz 
 tar -zxvf dupeguru-master_build_2020-04-16.tar.gz
 mv dupeguru-master_build_2020-04-16 ~/Applications
 sudo cp ~/ubuntu-configuration/desktops/dupeguru.desktop /usr/share/applications
+rm  dupeguru-master_build_2020-04-16.tar.gz
