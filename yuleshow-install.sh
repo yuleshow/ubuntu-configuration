@@ -62,6 +62,7 @@ sudo cp ubuntu-configuration/bin/* /usr/local/bin
 ~/ubuntu-configuration/batch/yuleshow-adobereader.sh
 ~/ubuntu-configuration/batch/yuleshow-clipgrab.sh
 ~/ubuntu-configuration/batch/yuleshow-arronax.sh
+~/ubuntu-configuration/batch/yuleshow-freefilesync.sh
 ~/ubuntu-configuration/batch/yuleshow-bashrc.sh
 
 
