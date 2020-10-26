@@ -1,10 +1,11 @@
-#!/usr/bin/env xdg-open
 [Desktop Entry]
-Version=1.0
 Type=Application
+Name=FreeFileSync
+GenericName=Folder Comparison and Synchronization
+GenericName[de_DE]=Ordnervergleich und Synchronisation
+Exec=/home/yuleshow/Applications/FreeFileSync/FreeFileSync %f
+NoDisplay=false
 Terminal=false
-Icon[en_US]=/opt/FreeFileSync/Resources/FFS_tray_24x24.png
-Name[en_US]=Free File Sync
-Exec=/opt/FreeFileSync/FreeFileSync
-Name=Free File Sync
-Icon=/opt/FreeFileSync/Resources/FFS_tray_24x24.png
+Categories=Utility;FileTools;
+StartupNotify=true
+Hidden=false

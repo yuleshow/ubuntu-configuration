@@ -5,6 +5,6 @@
 # sudo apt install insync insync-nautilus -y
 
 
-wget https://d2t3ff60b2tol4.cloudfront.net/builds/insync_3.0.22.40446-bionic_amd64.deb
+wget https://d2t3ff60b2tol4.cloudfront.net/builds/insync_3.2.9.40883-focal_amd64.deb
 sudo dpkg -i insync*.deb
 rm insync*.deb
