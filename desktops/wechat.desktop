@@ -1,13 +1,16 @@
 #!/usr/bin/env xdg-open
+
 [Desktop Entry]
 Version=1.0
 Name=WeChat
 GenericName=WeChat Client
 Comment=WeChat Client
 Keywords=chat;wechat;WeChat,weixin
-Exec=/home/yuleshow/Applications/electronic-wechat-linux-x64/electronic-wechat %U
-Icon=electronic-wechat
+Exec=npm start &
+Icon=/opt/electronic-wechat-linux-x64/assets/256x256.png
 
 Terminal=false
 Type=Application
 Icon[en_US]=/usr/share/icons/MacBuntu-OS/apps/128/message.png
+Path=/opt/electronic-wechat-linux-x64
+Hidden=false
