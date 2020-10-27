@@ -19,7 +19,7 @@
 # Third way, can't input Chinese with iBus
 # sudo snap install electronic-wechat
 
-# Forth way
+# Forth way, again
 cd ~
 wget http://www.yuleshow.com/files/ubuntu/wechat.tar.gz
 tar -zxvf wechat.tar.gz
