@@ -9,3 +9,4 @@ Terminal=false
 Categories=Utility;FileTools;
 StartupNotify=true
 Hidden=false
+Icon=/home/yuleshow/Applications/FreeFileSync/Resources/FreeFileSync.png
