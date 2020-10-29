@@ -20,10 +20,18 @@
 # sudo snap install electronic-wechat
 
 # Forth way, again
-cd ~
+
+if [ -d ~/Applications ]
+then
+    echo "~/Applications already exists"
+else
+    mkdir ~/Applications
+    echo "~/Applications doesn't exist, created one."
+fi
+cd ~/Applications
 wget http://www.yuleshow.com/files/ubuntu/wechat.tar.gz
 tar -zxvf wechat.tar.gz
-sudo mv opt/electronic-wechat-linux-x64 /opt
-sudo cp ~/ubuntu-configuration/desktops/wechat.desktop /usr/share/applications/
-rm wechat.tar.gz
-rmdir opt
+# sudo mv opt/electronic-wechat-linux-x64 /opt
+# sudo cp ~/ubuntu-configuration/desktops/wechat.desktop /usr/share/applications/
+# rm wechat.tar.gz
+# rmdir opt

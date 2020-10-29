@@ -12,5 +12,5 @@ Icon=/opt/electronic-wechat-linux-x64/assets/icon.png
 Terminal=false
 Type=Application
 Icon[en_US]=/usr/share/icons/MacBuntu-OS/apps/128/message.png
-Path=/home/yuleshow/Applications/opt/electronic-wechat-linux-x64
+Path=/opt/electronic-wechat-linux-x64
 Hidden=false

@@ -20,7 +20,14 @@ sudo apt install ubuntu-restricted-extras -y
 
 
 # make the directories
-mkdir ~/Applications
+if [ -d ~/Applications ]
+then
+    echo "~/Applications already exists"
+else
+    mkdir ~/Applications
+    echo "~/Applications doesn't exist, created one."
+fi
+
 
 git clone https://github.com/yuleshow/ubuntu-configuration.git
 

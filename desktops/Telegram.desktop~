@@ -8,5 +8,4 @@ Icon[en_US]=web-telegram
 Name[en_US]=Telegram
 Exec=/home/yuleshow/Applications/Telegram/Telegram
 Name=Telegram
-Icon=/home/yuleshow/Applications/icons/telegram.svg
-Hidden=false
+Icon=gnome-panel-launcher

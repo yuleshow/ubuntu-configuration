@@ -1,4 +1,13 @@
 sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+
+if [ -d ~/Applications ]
+then
+    echo "~/Applications already exists"
+else
+    mkdir ~/Applications
+    echo "~/Applications doesn't exist, created one."
+fi
+
 cd ~/Applications
 mkdir calibre4
 cd calibre4
