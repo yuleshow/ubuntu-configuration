@@ -55,7 +55,6 @@ sudo cp ubuntu-configuration/bin/* /usr/local/bin
 ~/ubuntu-configuration/batch/yuleshow-guake.sh
 # ~/ubuntu-configuration/batch/yuleshow-macbuntu.sh
 ~/ubuntu-configuration/batch/yuleshow-xdm.sh
-~/ubuntu-configuration/batch/yuleshow-youtube.sh
 ~/ubuntu-configuration/batch/yuleshow-wordpress.sh
 ~/ubuntu-configuration/batch/yuleshow-ipadcharge.sh
 ~/ubuntu-configuration/batch/yuleshow-gnome.sh
@@ -63,7 +62,7 @@ sudo cp ubuntu-configuration/bin/* /usr/local/bin
 ~/ubuntu-configuration/batch/yuleshow-tools.sh
 ~/ubuntu-configuration/batch/yuleshow-vips.sh
 ~/ubuntu-configuration/batch/yuleshow-tifig.sh
-~/ubuntu-configuration/batch/yuleshow-wine.sh
+~/ubuntu-configuration/batch/yuleshow-crossover.sh
 ~/ubuntu-configuration/batch/yuleshow-telegram.sh
 ~/ubuntu-configuration/batch/yuleshow-tor.sh
 ~/ubuntu-configuration/batch/yuleshow-adobereader.sh
