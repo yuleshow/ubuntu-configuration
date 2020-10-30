@@ -1,3 +1,4 @@
+
 # make the directories
 if [ -d ~/Applications ]
 then
@@ -12,5 +13,5 @@ cd ~/Applications
 wget https://freefilesync.org/download/FreeFileSync_11.2_Linux.tar.gz
 tar -zxvf FreeFileSync_11.2_Linux.tar.gz
 # sudo mv FreeFileSync ~/Applications
-sudo cp ubuntu-configuration/desktops/FreeFileSync.desktop /usr/share/applications
+sudo cp ~/ubuntu-configuration/desktops/FreeFileSync.desktop /usr/share/applications
 rm FreeFileSync_11.2_Linux.tar.gz
