@@ -13,13 +13,13 @@
 # wine ubuntu-configuration/windows-exe/mp3tagv289asetup.exe
 
 
-# wget http://ftp.br.debian.org/debian/pool/main/g/glibc/multiarch-support_2.28-10_i386.deb
-# sudo dpkg -i multiarch-support_2.28-10_i386.deb
-# rm multiarch-support_2.28-10_i386.deb
-# sudo dpkg --add-architecture i386
-# sudo apt --fix-broken install -y
-# sudo apt install libnss-mdns:i386 -y
-# sudo apt install python-gtk2 -y
+wget http://ftp.br.debian.org/debian/pool/main/g/glibc/multiarch-support_2.28-10_i386.deb
+sudo dpkg -i multiarch-support_2.28-10_i386.deb
+rm multiarch-support_2.28-10_i386.deb
+sudo dpkg --add-architecture i386
+sudo apt --fix-broken install -y
+sudo apt install libnss-mdns:i386 -y
+sudo apt install python-gtk2 -y
 
 # # https://media.codeweavers.com/pub/crossover/cxlinux/demo/crossover_20.0.0-1.deb
 # # wget https://media.codeweavers.com/pub/crossover/cxlinux/demo/crossover_19.0.1-1.deb
@@ -37,3 +37,5 @@ wget https://media.codeweavers.com/pub/crossover/cxlinux/demo/crossover_20.0.0-1
 sudo dpkg -i crossover_20.0.0-1.deb
 sudo apt install -f
 rm crossover_20.0.0-1.deb
+sudo apt-get install libgsm1:i386 libopenal1:i386 libpulse0:i386 libudev1:i386 libxslt1.1:i386 -y
+sudo /opt/cxoffice/bin/cxfix missinglibsane missinglibsane.amd64
