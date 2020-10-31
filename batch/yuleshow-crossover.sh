@@ -35,8 +35,8 @@ sudo apt install python-gtk2 -y
 
 wget https://media.codeweavers.com/pub/crossover/cxlinux/demo/crossover_20.0.0-1.deb
 sudo dpkg -i crossover_20.0.0-1.deb
-sudo apt install -f
+sudo apt install -f -y
 rm crossover_20.0.0-1.deb
 sudo apt-get install libgsm1:i386 libopenal1:i386 libpulse0:i386 libudev1:i386 libxslt1.1:i386 -y
 sudo /opt/cxoffice/bin/cxfix missinglibsane missinglibsane.amd64
-sudo apt install libcups2:i386
+sudo apt install libcups2:i386 -y
