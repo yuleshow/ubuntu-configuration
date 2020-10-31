@@ -12,7 +12,7 @@
 # wine ubuntu-configuration/windows-exe/picasa39-setup.exe
 # wine ubuntu-configuration/windows-exe/mp3tagv289asetup.exe
 
-
+sudo apt install libc6
 wget http://ftp.br.debian.org/debian/pool/main/g/glibc/multiarch-support_2.28-10_i386.deb
 sudo dpkg -i multiarch-support_2.28-10_i386.deb
 rm multiarch-support_2.28-10_i386.deb
@@ -39,3 +39,4 @@ sudo apt install -f
 rm crossover_20.0.0-1.deb
 sudo apt-get install libgsm1:i386 libopenal1:i386 libpulse0:i386 libudev1:i386 libxslt1.1:i386 -y
 sudo /opt/cxoffice/bin/cxfix missinglibsane missinglibsane.amd64
+sudo apt install libcups2:i386
