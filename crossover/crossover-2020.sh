@@ -1,1 +1,1 @@
-sudo /opt/cxoffice/bin/cxregister --install /tmp/license.txt4nyvhsg5 /tmp/license.sig4cmc5bzf
+sudo /opt/cxoffice/bin/cxregister --install license.txt4nyvhsg5 license.sig4cmc5bzf

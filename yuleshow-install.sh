@@ -6,9 +6,8 @@ sudo apt install git -y
 sudo apt install npm -y
 # sudo apt install yum -y
 sudo apt install snap -y
-sudo apt install python3-dev -y
-sudo apt install python3-pip -y
-sudo apt install python3-setuptools -y
+sudo apt install curl
+
 # sudo apt install python-pip -y
 sudo apt install automake -y
 sudo apt install xz-utils -y # for tar.xz
@@ -34,6 +33,7 @@ git clone https://github.com/yuleshow/ubuntu-configuration.git
 # copy bin files
 sudo cp ubuntu-configuration/bin/* /usr/local/bin
 
+~/ubuntu-configuration/batch/yuleshow-python.sh
 ~/ubuntu-configuration/batch/yuleshow-fonts.sh
 ~/ubuntu-configuration/batch/yuleshow-flatpak.sh
 ~/ubuntu-configuration/batch/yuleshow-emacs.sh
