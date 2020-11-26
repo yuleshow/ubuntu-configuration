@@ -45,3 +45,4 @@ sudo apt install libfreetype6:i386 -y
 sudo apt install libpng16-16:i386 -y
 sudo apt install libx11-6:i386 -y
 sudo apt install libxext6:i386 -y
+sudo apt install libgl1-mesa-glx:i386 -y

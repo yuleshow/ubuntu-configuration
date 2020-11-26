@@ -25,3 +25,12 @@ sudo add-apt-repository ppa:flacon -y
 sudo apt install flacon -y
 
 sudo snap install --candidate freac
+
+sudo apt install gparted -y
+sudo apt install synaptic -y
+sudo apt install bleahbit -y
+sudo apt install dconf-editor -y
+sudo apt install preload -y
+sudo apt install gufw -y
+
+sudo apt install locate -y
