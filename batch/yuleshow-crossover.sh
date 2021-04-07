@@ -33,16 +33,34 @@ sudo apt install python-gtk2 -y
 
 # sudo apt install libsane:i386
 
-wget https://media.codeweavers.com/pub/crossover/cxlinux/demo/crossover_20.0.0-1.deb
-sudo dpkg -i crossover_20.0.0-1.deb
+# wget https://media.codeweavers.com/pub/crossover/cxlinux/demo/crossover_20.0.0-1.deb
+wget https://media.codeweavers.com/pub/crossover/cxlinux/demo/crossover_20.0.2-1.deb
+sudo dpkg -i crossover_20.0.2-1.deb
 sudo apt install -f -y
-rm crossover_20.0.0-1.deb
-sudo apt-get install libgsm1:i386 libopenal1:i386 libpulse0:i386 libudev1:i386 libxslt1.1:i386 -y
-sudo /opt/cxoffice/bin/cxfix missinglibsane missinglibsane.amd64
+rm crossover_20.0.2-1.deb
+
+sudo apt install gstreamer1.0-plugins-base:i386 -y
+sudo apt install gstreamer1.0-plugins-good:i386 -y
+sudo apt install gstreamer1.0-plugins-ugly:i386 -y
 sudo apt install libcups2:i386 -y
-sudo apt install libmpg123-0:i386 -y
 sudo apt install libfreetype6:i386 -y
-sudo apt install libpng16-16:i386 -y
-sudo apt install libx11-6:i386 -y
-sudo apt install libxext6:i386 -y
 sudo apt install libgl1-mesa-glx:i386 -y
+sudo apt install libglu1-mesa:i386 -y
+sudo apt install libgsm1:i386 -y
+sudo apt install libgstreamer1.0-0:i386 -y
+sudo apt install libmpg123-0:i386 -y
+sudo apt install libopenal1:i386 -y
+sudo apt install libpng16-16:i386 -y
+sudo apt install libpulse0:i386 -y
+sudo apt install libudev1:i386 -y
+sudo apt install libx11-6:i386 -y
+sudo apt install libxcomposite1:i386 -y
+sudo apt install libxcursor1:i386 -y
+sudo apt install libxext6:i386 -y
+sudo apt install libxi6:i386 -y
+sudo apt install libxinerama1:i386 -y
+sudo apt install libxrandr2:i386  -y
+sudo apt install libxslt1.1:i386 -y
+
+sudo /opt/cxoffice/bin/cxfix missinglibsane missinglibsane.amd64
+
