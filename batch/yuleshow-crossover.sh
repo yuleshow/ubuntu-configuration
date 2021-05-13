@@ -34,10 +34,10 @@ sudo apt install python-gtk2 -y
 # sudo apt install libsane:i386
 
 # wget https://media.codeweavers.com/pub/crossover/cxlinux/demo/crossover_20.0.0-1.deb
-wget https://media.codeweavers.com/pub/crossover/cxlinux/demo/crossover_20.0.2-1.deb
-sudo dpkg -i crossover_20.0.2-1.deb
+wget https://media.codeweavers.com/pub/crossover/cxlinux/demo/crossover_20.0.4-1.deb
+sudo dpkg -i crossover_20.0.4-1.deb
 sudo apt install -f -y
-rm crossover_20.0.2-1.deb
+rm crossover_20.0.4-1.deb
 
 sudo apt install gstreamer1.0-plugins-base:i386 -y
 sudo apt install gstreamer1.0-plugins-good:i386 -y
