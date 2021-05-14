@@ -1,5 +1,5 @@
 # begin
-# ~/ubuntu-configuration/batch/yuleshow-begin.sh
+~/ubuntu-configuration/batch/yuleshow-begin.sh
 
 ~/ubuntu-configuration/batch/yuleshow-python.sh
 ~/ubuntu-configuration/batch/yuleshow-fonts.sh
@@ -17,7 +17,7 @@
 ~/ubuntu-configuration/batch/yuleshow-aria2.sh
 ~/ubuntu-configuration/batch/yuleshow-smartgit.sh
 ~/ubuntu-configuration/batch/yuleshow-rename.sh
-# ~/ubuntu-configuration/batch/yuleshow-iphone.sh
+~/ubuntu-configuration/batch/yuleshow-iphone.sh
 ~/ubuntu-configuration/batch/yuleshow-calibre.sh
 ~/ubuntu-configuration/batch/yuleshow-baidu.sh
 ~/ubuntu-configuration/batch/yuleshow-guake.sh
