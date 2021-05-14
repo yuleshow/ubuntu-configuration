@@ -7,7 +7,7 @@ GenericName=WeChat Client
 Comment=WeChat Client
 Keywords=chat;wechat;WeChat,weixin
 Exec=npm start &
-Icon=/opt/electronic-wechat-linux-x64/assets/icon.png
+Icon=/home/yuleshow/Applications/opt/electronic-wechat-linux-x64/assets/icon.png
 
 Terminal=false
 Type=Application
