@@ -3,7 +3,7 @@ sudo apt-get install libtool m4 -y
 sudo apt install libimobiledevice-utils -y
 sudo apt install ifuse -y
 sudo apt install libusb-1.0-0-dev -y
-
+sudo apt install libplist-dev -y
 
 sudo mkdir /media/iPhone
 sudo chown yuleshow:yuleshow /media/iPhone
