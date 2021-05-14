@@ -41,7 +41,7 @@ sudo apt install thunderbird-locale-en-gb -y
 sudo apt install thunderbird-locale-en-gb -y
 
 # RIME
-# sudo apt install ibus-rime -y
+sudo apt install ibus-rime -y
 
-sudo apt install fcitx -y
-sudo apt install fcitx-rime -y
+# sudo apt install fcitx -y
+# sudo apt install fcitx-rime -y

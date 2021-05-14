@@ -14,7 +14,7 @@
 ~/ubuntu-configuration/batch/yuleshow-wechat.sh
 ~/ubuntu-configuration/batch/yuleshow-virtualbox.sh
 ~/ubuntu-configuration/batch/yuleshow-whatever.sh
-~/ubuntu-configuration/batch/yuleshow-aria2.sh
+# ~/ubuntu-configuration/batch/yuleshow-aria2.sh
 ~/ubuntu-configuration/batch/yuleshow-smartgit.sh
 ~/ubuntu-configuration/batch/yuleshow-rename.sh
 ~/ubuntu-configuration/batch/yuleshow-iphone.sh
