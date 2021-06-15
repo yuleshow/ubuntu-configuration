@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Icon=/home/yuleshow/ubuntu-configuration/desktops/freac-256x256.png
+Name=fre:ac
+
+Terminal=false
+Hidden=false
+Exec=/home/yuleshow/Applications/freac-1.1.4-linux-x86_64.AppImage
