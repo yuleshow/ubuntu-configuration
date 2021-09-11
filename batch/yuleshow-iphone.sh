@@ -81,5 +81,12 @@ sudo ldconfig
 cd ..
 sudo rm -r -f usbmuxd
 
-~/ubuntu-configuration/batch/yuleshow-vips.sh
-~/ubuntu-configuration/batch/yuleshow-tifig.sh
+
+# For install vips and tifig directly
+sudo apt install libvips -y
+sudo apt install libvips-tools -y
+sudo snap install tifig
+
+# For compile vips and tifig
+# ~/ubuntu-configuration/batch/yuleshow-vips.sh
+# ~/ubuntu-configuration/batch/yuleshow-tifig.sh
