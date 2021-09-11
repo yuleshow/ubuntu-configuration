@@ -14,9 +14,11 @@ After installation;
   - Lastpass
   - Grammarly
 - Set the auto mount for Picasa and other applications
+  - Startup Applications Prefereces - Add
+  - Command: udisksctl mount --block-device /dev/disk/by-uuid/<uuid>
 - Fix missing repository under /etc/apt/sources.list.d
 - InSync configuration and symbol link for @gmail.com folder
-- Download big files from google drive
+- # Download big files from google drive
 - Setting
   - Privacy - Screen Lock - Automatic Screen Lock
   - Appearance - Auto-hide the Dock
@@ -30,12 +32,12 @@ After installation;
 - Change background and lock window background by gdm-background
 - Setup thundermail
 - GoldenDict
-  - python3 -m googletranslate zh-CN %GDWORD%
   - Download dictionaries and other files from cloud
   - Add goldendict dictionaries
   - Add Morphology
   - Add Sound
   - Remove Full-text search
+  - Run: pip3 install google-translate-for-goldendict
   - Add Programs
     - [html] python3 -m googletranslate zh-TW %GDWORD%
     - or [html] python3 -m googletranslate zh-CN %GDWORD%
