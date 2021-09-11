@@ -4,10 +4,10 @@ This is just a person ubuntu configuration
 After installation;
 
 - Reboot
-- sudo apt install ubuntu-restricted-extras -y
+- `sudo apt install ubuntu-restricted-extras -y`
 - flatpack
-  - flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-  - flatpak install flathub fr.handbrake.ghb
+  - `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo`
+  - `flatpak install flathub fr.handbrake.ghb`
 - manually install opera
 - yuleshow-freefilesync
 - Login to firefox and chrome for synchronization
@@ -15,7 +15,7 @@ After installation;
   - Grammarly
 - Set the auto mount for Picasa and other applications
   - Startup Applications Prefereces - Add
-  - Command: udisksctl mount --block-device /dev/disk/by-uuid/<uuid>
+  - Command: `udisksctl mount --block-device /dev/disk/by-uuid/<uuid>`
 - Fix missing repository under /etc/apt/sources.list.d
 - InSync configuration and symbol link for @gmail.com folder
 - # Download big files from google drive
@@ -37,7 +37,7 @@ After installation;
   - Add Morphology
   - Add Sound
   - Remove Full-text search
-  - Run: pip3 install google-translate-for-goldendict
+  - Run: `pip3 install google-translate-for-goldendict`
   - Add Programs
     - [html] python3 -m googletranslate zh-TW %GDWORD%
     - or [html] python3 -m googletranslate zh-CN %GDWORD%
