@@ -1,0 +1,406 @@
+Suddenly, I wiped my harddisk for a new multi-Linux installation. Now my partition map looks like this:
+
+Firstly, I installed Ubuntu 18.04.1, following are the modifications and installations for the Ubuntu:
+* Installation 
+** partition
+   set a whole partition to /home
+* Update system frist
+<pre>sudo apt update
+sudo apt upgrade</pre>
+* varies tools for downloads and compile
+<pre>sudo apt install cmake git yum snap flatpak</pre>
+* GNU Emacs 25 (GUI)
+  The reason I selected emacs as the first because I need something to start writing this article.
+** install
+<pre>sudo apt install emacs</pre>
+** ispell
+   <pre>sudo install ispell</pre>
+** Symbol links
+<pre>ln -s /Work/yuleshow@gmail.com/ Google_Drive
+ln -s /home/yuleshow/Google_Drive/dotemacs .emacs.d
+ln -s /home/yuleshow/Google_Drive/dotemacs/new.emacs .emacs</pre>
+* Chrome, the browser
+  https://www.google.com/chrome/ , downloaded and installed through Software Install.
+  Chrome is my faivourate browser, with Google sync I don't have to use other applications to store bookmarks and combinations.
+  Sign in the Google account.
+** command line installation
+<pre>wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 
+sudo dpkg -i google-chrome*
+sudo apt-get install -f
+</pre>
+* Pepper Flash Player for Firefox
+
+* InSync
+  https://www.insynchq.com/downloads?start=true , downloaded 64bit version and installed.
+  I use this to synchronize the Google Drive, there is no official app.
+  Configure the folder to /Work/yuleshow@gmail.com 
+  Install it, and the insync-nautilus will be failed, the back to the website and manually download it in the package tab, then installed it.
+** symbol link yuleshow@gmail.com to ~/Google_Drive
+* Add Chinese(tradtional) to Language Support, by Setting->Region & Language
+* RIME input method
+  <pre>sudo apt-get install ibus-rime</pre>
+  Input Methos Configuration, select ibus.
+  Settings->Regional & Language -> Input Source
+  Add Chinese (RIME)
+  Settings->Regional & Language -> Input Source -> Options
+  Set Allow different Source for each window
+* Add Chinese(RIME) to Settings->Region & Language
+** Manage Installed Languages
+   Add Chinese(Triditional)
+*** set the shortcut
+
+
+  Set Super+down to switch input source
+  Ctrl+` to change to Canji
+* Set Large Text in Settings->Universal Access
+* Set Online Accounts in Settings->Online Account
+* GNOME-shell connector
+  <pre>sudo apt-get install chrome-gnome-shell</pre>
+* https://extensions.gnome.org/
+** Activities Configurator
+** Applications Menu
+** TopIcons Plus
+   Customized Tray horizontal alignment to Right
+** Dash to Dock
+   Customized Dock position to Bottom
+   Turned Intelligent autohide on
+* flatpak
+<pre>sudo add-apt-repository ppa:alexlarsson/flatpak
+sudo apt update
+sudo apt install flatpak
+sudo apt install gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+</pre>
+* VLC 3.0
+  <pre>sudo snap install vlc</pre>
+  <pre>sudo add-apt-repository ppa:mc3man/trusty-media
+sudo apt-get update
+sudo apt-get install vlc-plugin-*</pre> for the decoding
+* DVD source plug-in for Totem
+  <pre>sudo apt-get install ubuntu-restricted-extras</pre>
+* Whatever for evernote
+  https://sourceforge.net/projects/whatever-evernote-client/files/v1.0.0/
+* cmake, compiler
+<pre>sudo apt install cmake</pre>
+* gradle, compiler
+<pre>sudo apt install gradle</pre>
+* GIMP
+  https://www.gimp.org/downloads/ install faltpak
+<pre>flatpak install https://flathub.org/repo/appstream/org.gimp.GIMP.flatpakref
+</pre>
+run 
+<pre>flatpak run org.gimp.GIMP//stable
+</pre>
+* Calibre
+** sudo apt install calibre
+** or this
+  <pre>sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.py | sudo python -c "import sys; main=lambda:sys.stderr.write('Download failed\n'); exec(sys.stdin.read()); main()"</pre>
+* LibreOffice
+  Remove the 5.x version and install the 6.x
+  https://www.libreoffice.org/download/download/?type=deb-x86_64&version=6.0.1&lang=en-US
+  Extract the files, then
+  <pre>sudo dpkg -i *.deb</pre>
+* Albert launcher
+  <pre>wget -nv -O Release.key https://build.opensuse.org/projects/home:manuelschneid3r/public_key
+sudo apt-key add - < Release.key
+apt-get update
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_17.10/ /' > /etc/apt/sources.list.d/albert.list"
+sudo apt-get update
+sudo apt-get install albert</pre>
+  -------------------------
+  Set Meta+Space as the hotkey
+  Check the Extensions
+* STEAM
+  http://store.steampowered.com/about/
+  install it, in case can't be launched, do the following
+  <pre>sudo apt purge steam-launcher
+sudo rm /etc/apt/sources.list.d/steam.list
+sudo apt update
+sudo apt install steam</pre>
+* neofetch
+  <pre>sudo apt update
+sudo apt install neofetch</pre>
+* WeChat
+** lib
+   <pre>sudo apt -y install libgconf2-4</pre>
+**   https://github.com/geeeeeeeeek/electronic-wechat/releases
+  Extract and put at ~/
+  <pre>ln -s electronic-wechat-linux-x64/electronic-wechat Desktop/WeChat</pre>
+* wordpress.com, the blog desktop
+  https://apps.wordpress.com/desktop/
+* GNOME Tweaks
+  Ubuntu Software to install
+  Change the Bettery Percentage to ON
+  Put Albert to start-up
+* Mouse Natural Scrolling
+  Setting->Devices->Mouse & Touchpad
+  Turn on mouse's natural scrolling
+* MacUbuntu
+https://www.noobslab.com/2018/08/macbuntu-1804-transformation-pack-ready.html
+** Themes and Icons
+
+   <pre>sudo add-apt-repository ppa:noobslab/macbuntu
+sudo apt-get update
+sudo apt-get install macbuntu-os-icons-v1804
+sudo apt-get install macbuntu-os-ithemes-v1804</pre>
+   --------------
+   Then tweak tools set it
+** Plank
+** MacFonts
+   <pre>wget -O mac-fonts.zip http://drive.noobslab.com/data/Mac/macfonts.zip
+sudo unzip mac-fonts.zip -d /usr/share/fonts; rm mac-fonts.zip
+sudo fc-cache -f -v</pre>
+* Fonts
+  Fonts can be easily copy into /usr/share/fonts and also can create sub-directory there, then <pre>sudo fc-cache -f -v</pre>
+** Chinese fonts from Yule Show's git
+<pre>git clone https://www.github.com/yuleshow/chinese-fonts.git
+sudo fc-cache -f -v
+
+* Microsoft Fonts
+<pre>sudo apt install ttf-mscorefonts-installer</pre>
+* IRC Client
+<pre>sudo apt install quassel-client</pre>
+* Other mac like themes
+** Gnome OSX light menu theme
+   https://www.gnome-look.org/p/1171688/
+   download and extract to a new .themes under ~/
+** MacIcon 
+   https://github.com/keeferrourke/la-capitaine-icon-theme/releases
+   download and extract to a new .icons under ~/
+** Helvetica Neue font
+   <pre>copy the fonts Helvetic*.ttc from Mac's /System/Library/Fonts
+copy all the fonts to /usr/share/fonts
+sudo fc-cache -f -v</pre>
+* Gpartd
+  Ubuntu Software
+<pre>xhost +si:localuser:root</pre>
+  then launch it
+* Min browser
+  https://minbrowser.github.io/min/
+* Download YouTube
+<pre>sudo add-apt-repository ppa:clipgrab-team/ppa
+sudo apt-get update
+sudo apt-get install clipgrab</pre>
+* Google Earth
+https://www.google.com/earth/download/gep/agree.html
+* Whois
+<pre>sudo apt install whois</pre>
+* Git
+  <pre>sudo apt install git</pre>
+* npm
+  <pre>sudo apt install npm</pre>
+---------------------------------
+
+* ************For Shotwell******************
+* meson and valac, compiler
+<pre>sudo apt install meson</pre>
+<pre>sudo apt install valac</pre>
+* GTK+-3.0
+<pre>sudo apt install gtk+-3.0
+Sudo apt gee-0.8
+sudo apt install webkit2gtk</pre>
+* Higher version of Shotwell
+  <pre>sudo add-apt-repository ppa:yg-jensge/shotwell
+sudo apt-get update
+sudo apt-get install shotwell</pre>
+* flatpak of Shotwell
+  https://wiki.gnome.org/Apps/Shotwell/BuildingAndInstalling
+* ********************************************
+* gThubm viewer
+  ubuntu store
+* DupeGuru
+  https://dupeguru.voltaicideas.net/
+  # find /usr/share/dupeguru -name "*cpython-35m-x86_64*"
+  /usr/share/dupeguru/core/pe/_cache.cpython-35m-x86_64-linux-gnu.so
+  /usr/share/dupeguru/core/pe/_block.cpython-35m-x86_64-linux-gnu.so
+  /usr/share/dupeguru/qt/pe/_block_qt.cpython-35m-x86_64-linux-gnu.so
+  copy all those three and change the name from 35m to 36m
+* wine
+<pre>sudo add-apt-repository ppa:ubuntu-wine/ppa
+sudo apt-get install wine-stable
+sudo apt-get winetrickes
+</pre>
+* picasa
+  https://sites.google.com/site/picasaresources/Home/Picasa-FAQ/picasa/general-information/update-picasa-to-latest-version
+  https://onedrive.live.com/?authkey=%21AN2Uq1VWM34xF5M&cid=1FF391CF8C653CE1&id=1FF391CF8C653CE1%211100&parId=1FF391CF8C653CE1%21110&action=locate
+  wine picasa39-setup.exe
+* ***************For multi boot*****************
+* rEFInd, EFI tool
+  <pre>sudo apt-add-repository ppa:rodsmith/refind
+sudo apt-get update
+sudo apt-get install refind
+sudo apt-get refind-install
+sudo apt-get refind-mkdefault</pre>
+* Check the mount point
+<pre>lsblk</pre>
+to see whether sda1's mount point is /boot/efi
+otherwise
+<pre>mkdir /boot/efi/
+mount /dev/sda1 /boot/efi/</pre>
+* rEFInd theme
+** install
+  <pre>sudo git clone https://github.com/munlik/refind-theme-regular.git /boot/efi/EFI/refind/refind-theme-regular</pre>
+  remove unuseful stuff
+  <pre>sudo rm -rf /boot/efi/EFI/refind/refind-theme-regular/{src,.git}</pre>
+** configure
+   <pre>nano /boot/efi/EFI/refind/refind.conf</pre>
+   add the following
+   <pre>resolution 3</pre>
+   <pre>resolution 1600 900</pre>
+   <pre>include refind-theme-regular/theme.conf</pre>
+   save and quit nano
+* etcher for other distro, Flash OS images to SD cards & USB drives
+  https://etcher.io/
+* -----------------------------
+* pip for python
+  <pre>sudo apt install python-pip</pre>
+* -----------------------------
+* hancovrt, emacs plug-in
+  first of all, need two package, 'unicad and 'hancovert
+  then install the python chardet
+* font
+** wqy
+   <pre>sudo apt-get install ttf-wqy-microhei</pre?
+** ubunto
+   use apt install *fontname* to install, the name includes ttf-unifont
+** MingLiu
+   <pre>sudo mkdir /usr/share/fonts/myfonts
+   cp *.ttc /usr/share/fonts/myfonts
+   sudo fc-cache -f -v 
+   fc-list</pre>
+** Old shape
+   https://github.com/ButTaiwan/genyo-font.git
+   https://github.com/ButTaiwan/genryu-font.git
+   https://github.com/ButTaiwan/genyog-font.git
+   https://github.com/Pal3love/Yunlin-Sans-CID.git
+* Vivaldi, an Internet browser
+sudo sh -c "echo 'deb http://repo.vivaldi.com/stable/deb/ stable main' >> /etc/apt/sources.list.d/vivaldi.list"
+wget -O vr.key http://repo.vivaldi.com/stable/linux_signing_key.pub;sudo apt-key add - < vr.key;rm vr.key
+sudo apt-get update
+sudo apt-get install vivaldi-stable
+* fontforge
+  <pre>sudo apt-get install fontforge</pre>
+* ThunderBird, the mail client
+  The thunderbird is defaultly installed, so we copy the .desktop file from /usr/share/applications first.  Then remove the old version by <pre>sudo apt remove thunderbird</pre>
+** New version, 60.0
+   https://www.thunderbird.net/en-US/
+   Download, extract and create a .desktop file
+
+* -------------------------------
+* KDE
+<pre>sudo add-apt-repository ppa:kubuntu-ppa/backports
+sudo apt-get update && apt-get upgrade
+sudo apt install kubuntu-desktop</pre>
+* iPhone mount
+  Install the required things first
+<pre>sudo apt-get install ideviceinstaller python-imobiledevice libimobiledevice-utils libimobiledevice6 libplist3 python-plist ifuse usbmuxd</pre> for other versions
+<pre>sudo apt install libimobiledevice-utils</pre> for 18.04
+  Reboot the computer several times to make the charge lights on iphone
+<pre>idevicepair pair</pre>
+  Follow the result to justify
+  Then
+<pre>sudo mkdir /media/iPhone
+sudo chown yuleshow:yuleshow /media/iPhone/
+</pre>  only do once
+<pre>ifuse /media/iPhone</pre>
+  Mounted
+
+* iPhone DCIM
+  File, then ctrl+l, gphoto2://%5Busb%3A003,002%5D/ of afc://
+* HEIC to JPEG
+  first install the ffmpeg
+<pre>sudo apt install ffmpeg</pre>
+  Then install the library
+  <pre>sudo add-apt-repository -y ppa:jonathonf/ffmpeg-3
+sudo apt-get update
+sudo apt-get install libavcodec-dev libswscale-dev</pre>
+  make an empty folder
+  <pre>sudo apt-get install build-essential pkg-config libglib2.0-dev libexpat1-dev libjpeg-dev libexif-dev libpng-dev libtiff-dev
+wget https://github.com/jcupitt/libvips/releases/download/v8.6.1/vips-8.6.1.tar.gz
+tar xzf vips-8.6.1.tar.gz
+cd vips-8.6.1
+./configure
+make
+sudo make install
+</pre>
+  make anohter empty folder
+  <pre>git clone --recursive https://github.com/monostream/tifig.git
+mkdir tifig/build && cd tifig/build
+cmake ..
+make
+</pre>
+  then copy tifig to /usr/local/bin
+* batch rename
+** tools installation
+<pre>sudo install exiv2 rename</pre>
+** create the bash file and put to /usr/local/bin after chmod +x
+** rename-iphone
+<pre>exiv2 rename *.*
+rename 's/\.JPEG$/-iPhone-X.JPEG/' *.JPEG
+rename 's/\.JPG$/-iPhone-X.JPG/' *.JPG
+rename 's/\.MOV$/-iPhone-X.MOV/' *.MOV
+rename 's/\.PNG$/-iPhone-X.PNG/' *.PNG
+ls
+</pre>
+** rename-fuji
+<pre>exiv2 rename *.JPG
+rename 's/\.JPG$/-X-T1.JPG/' *.JPG
+ls
+</pre>
+* TheFuck
+<pre>sudo apt install python3-dev python3-pip
+sudo pip3 install thefuck
+</pre>
+* HanaMin font
+  http://fonts.jp/hanazono/
+* Tor
+https://www.torproject.org/download/download-easy.html.en
+* OpenJDK
+sudo apt-get install openjdk-6-jre openjdk-6-jdk icedtea6-plugin
+* -----------Andriod Emulator-----------
+** cpu-checker
+
+
+<pre>sudo apt install cpu-checker</pre>
+** KVM check
+   Use the code <pre>egrep -c '(vmx|svm)' /proc/cpuinfo</pre> to see whether the cpu support KVM or not.  The result bigger than 1 indicates maybe work.
+   Use cpu-checker to see the result.
+** KVM installation
+<pre>sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils
+sudo apt-get install virt-manager</pre>
+REF: https://help.ubuntu.com/community/KVM/Installation
+https://developer.android.com/studio/?hl=sk
+
+*
+* Powershell Core
+Ubuntu store
+* aria2, the Baidu Pan cloud downloader
+<pre>sudo apt install aria2</pre>
+install the chrome extension from https://github.com/acgotaku/BaiduExporter
+install the chrome extension AriaNG https://github.com/mayswind/AriaNg
+also check this https://greasyfork.org/zh-CN/scripts/40496-ci-aria2%E7%99%BE%E5%BA%A6%E4%BA%91%E7%9B%98%E5%A2%9E%E5%BC%BA%E7%89%88
+status webpage http://aria2.me/aria-ng/#!/downloading
+* ipad_charge, the ipad charge controll, doesn't work on 18.04 yet
+<pre>
+sudo apt-get install libusb-1.0-0 libusb-1.0-0-dev
+git clone https://github.com/mkorenkov/ipad_charge.git
+cd ipad_charge/
+make
+sudo make install
+</pre>
+in case the commputer can't recognize the ipad
+<pre>sudo usbmuxd -u -U usbmux
+</pre>
+or set the alias
+<pre>alias reset_usb='sudo usbmuxd -u -U usbmux'
+</pre> 
+or 
+<pre>sudo systemctl restart usbmuxd
+</pre> same to restart usbmuxd
+* virtualbox, the virtual machine from Oracle VM
+https://www.virtualbox.org/wiki/Linux_Downloads
+* smartgit, the github client
+<pre>wget https://www.syntevo.com/downloads/smartgit/smartgit-18_1_4.deb
+sudo dpkg -i smartgit-18_1_4.deb
+* FileZilla
+<pre>sudo apt install filezilla</pre>

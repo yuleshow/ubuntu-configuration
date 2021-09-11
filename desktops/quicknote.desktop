@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=Quicknote
+Exec=emacs ~/Google_Drive/yuleshow-quicknote.org
+Type=Application
+StartupNotify=true
+# Path=/home/yuleshow/.wine/dosdevices/c:/Program Files (x86)/Google/Picasa3
+# Icon=0549_Picasa3.0
+StartupWMClass=Note
+Terminal=false
+Icon[en_US]=notepad-48
+Icon=notepad-48

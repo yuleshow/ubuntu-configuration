@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=WeChat
+GenericName=WeChat Client
+Comment=WeChat Client
+Keywords=chat;wechat;WeChat,weixin
+Exec=npm start &
+Icon=/home/yuleshow/ubuntu-configuration/icons/wechat.icns
+
+Terminal=false
+Type=Application
+Path=/home/yuleshow/Applications/opt/electronic-wechat-linux-x64
+Hidden=false

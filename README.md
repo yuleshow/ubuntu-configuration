@@ -1,1 +1,74 @@
-# ubuntu-configuration
+# ubuntu-configuration-
+This is just a person ubuntu configuration 
+
+After installation;
+
+- Reboot
+- sudo apt install ubuntu-restricted-extras -y
+- flatpack
+  - flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  - flatpak install flathub fr.handbrake.ghb
+- manually install opera
+- yuleshow-freefilesync
+- Login to firefox and chrome for synchronization
+  - Lastpass
+  - Grammarly
+- Set the auto mount for Picasa and other applications
+- Fix missing repository under /etc/apt/sources.list.d
+- InSync configuration and symbol link for @gmail.com folder
+- Download big files from google drive
+- Setting
+  - Privacy - Screen Lock - Automatic Screen Lock
+  - Appearance - Auto-hide the Dock
+  - Mouse & Touchpad - Natural Scrolling
+  - Region & Language - Input Sources - RIME
+  - Keyboard Shortcuts - Switch to next input source
+  - Default Applications
+    - Video - VLC
+    - Photos - gThumb
+  - Sound - System Volume - Over-Amplification - Enable  
+- Change background and lock window background by gdm-background
+- Setup thundermail
+- GoldenDict
+  - python3 -m googletranslate zh-CN %GDWORD%
+  - Download dictionaries and other files from cloud
+  - Add goldendict dictionaries
+  - Add Morphology
+  - Add Sound
+  - Remove Full-text search
+  - Add Programs
+    - [html] python3 -m googletranslate zh-TW %GDWORD%
+    - or [html] python3 -m googletranslate zh-CN %GDWORD%
+    - Reference: https://github.com/xinebf/google-translate-for-goldendict
+  - Edit > Preferences > Audio > Use external program and insert: ffplay -nodisp -autoexit
+- Startup Applicastions
+  - auto mount
+  - GoldenDict
+  - Indicator Stickynotes
+  - Insync
+  - Plank
+  - Albert
+  - Indicator Sensors
+  - Guake
+- gnome tweaks
+  - Extensions - Applications menu, Places status indicator
+  - Fonts - Scaling Factor
+  - Keyboard & Mouse - Emacs Input
+- Manually install and initial thefuck
+- Configure Hardware Sensors
+- Configure Calibre and plugins
+- Crossover registeration and install
+  - http://www.yuleshow.com/files/ubuntu/windows-exe.tar.gz
+  - mp3tag
+  - picasa
+- Setup SmartGit
+  - Select license type, confirm
+  - set username/email
+  - SSH type(SmartGit)
+  - Style(19.1)
+  - Preferences -> Hosting Providers -> Add GitHub and token
+- sudo fc-cache -f -v
+- iPhone related compiling and installing
+- Add the following two lines to /etc/enviroment
+  - UNZIP="-O CP936"
+  - ZIPINFO="-O CP936"

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Icon=/home/yuleshow/ubuntu-configuration/icons/dgse_logo_128.png
+Name=dupeguru
+Terminal=false
+Hidden=false
+Exec=make run &
+Path=/home/yuleshow/Applications/dupeguru-master_build_2020-04-16/dupeguru-master

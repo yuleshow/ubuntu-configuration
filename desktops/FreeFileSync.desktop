@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=FreeFileSync
+GenericName=Folder Comparison and Synchronization
+GenericName[de_DE]=Ordnervergleich und Synchronisation
+Exec=/home/yuleshow/Applications/FreeFileSync/FreeFileSync %f
+NoDisplay=false
+Terminal=false
+Categories=Utility;FileTools;
+StartupNotify=true
+Hidden=false
+Icon=/home/yuleshow/ubuntu-configuration/icons/freac.svg

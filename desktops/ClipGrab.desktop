@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=/home/yuleshow/Applications/ClipGrab-3.9.6-x86_64.AppImage
+Terminal=false
+Hidden=false
+Name=ClipGrab
+Icon=/home/yuleshow/ubuntu-configuration/icons/clipgrab.icns
+Categories=Media; Network; Video

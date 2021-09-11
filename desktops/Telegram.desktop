@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon[en_US]=web-telegram
+Name[en_US]=Telegram
+Exec=/home/yuleshow/Applications/Telegram/Telegram
+Name=Telegram
+Icon=/home/yuleshow/Applications/icons/telegram.svg
+Hidden=false

@@ -1,0 +1,6 @@
+exiv2 rename *.*
+rename 's/\.JPEG$/-another-iPhone-X.JPEG/' *.JPEG
+rename 's/\.JPG$/-another-iPhone-X.JPG/' *.JPG
+rename 's/\.MOV$/-another-iPhone-X.MOV/' *.MOV
+rename 's/\.PNG$/-another-iPhone-X.PNG/' *.PNG
+ls

@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon[en_US]=/home/yuleshow/Applications/digikam.png
+Exec=/home/yuleshow/Applications/digikam-6.3.0-x86-64.appimage
+Name[en_US]=Digikam
+Name=Digikam
+Icon=/home/yuleshow/ubuntu-configuration/icons/digikam.svgz
+Hidden=false
