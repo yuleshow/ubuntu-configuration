@@ -9,7 +9,7 @@ After installation;
   - `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo`
   - `flatpak install flathub fr.handbrake.ghb`
 - manually install opera
-- yuleshow-freefilesync
+- `yuleshow-freefilesync` and set desktop shortcut launchable
 - Login to firefox and chrome for synchronization
   - Lastpass
   - Grammarly
