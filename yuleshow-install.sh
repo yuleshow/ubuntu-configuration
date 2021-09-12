@@ -83,7 +83,7 @@ sudo cp ubuntu-configuration/bin/* /usr/local/bin
 ~/ubuntu-configuration/batch/yuleshow-pdf.sh
 
 
-~/ubuntu-configuration/batch/yuleshow-freefilesync.sh
+# ~/ubuntu-configuration/batch/yuleshow-freefilesync.sh
 ~/ubuntu-configuration/batch/yuleshow-goldendict.sh
 ~/ubuntu-configuration/batch/yuleshow-postit.sh
 ~/ubuntu-configuration/batch/yuleshow-gdm-background.sh
