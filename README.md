@@ -32,25 +32,30 @@ After installation;
 - Change background and lock window background by gdm-background
 - Setup thundermail
 - GoldenDict
+  - Run: `pip3 install google-translate-for-goldendict`
   - Download dictionaries and other files from cloud
+  - Preferences
+    - Interface -> Display style -> Lingoes-Blue
+    - Audio -> Use external program and insert: `ffplay -nodisp -autoexit`
+    - Full-text search -> Disable
   - Add goldendict dictionaries
   - Add Morphology
   - Add Sound
-  - Remove Full-text search
-  - Run: `pip3 install google-translate-for-goldendict`
   - Add Programs
-    - [html] python3 -m googletranslate zh-TW %GDWORD%
-    - or [html] python3 -m googletranslate zh-CN %GDWORD%
+    - `html` `Google Translate` `python3 -m googletranslate zh-TW %GDWORD%`
+    - or `html` `Google Translate` `python3 -m googletranslate zh-CN %GDWORD%`
     - Reference: https://github.com/xinebf/google-translate-for-goldendict
-  - Edit > Preferences > Audio > Use external program and insert: ffplay -nodisp -autoexit
+  - Edit > Preferences > 
 - Startup Applicastions
   - auto mount
-  - GoldenDict
+  - GoldenDict 
   - Indicator Stickynotes
   - Insync
   - Plank
   - Albert
-  - Indicator Sensors
+    - Set Hotkey to Alt+L
+    - Select Extensions
+  - Indicator Sensors `indicator-sensors`
   - Guake
 - gnome tweaks
   - Extensions - Applications menu, Places status indicator
