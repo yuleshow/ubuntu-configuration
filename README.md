@@ -18,7 +18,9 @@ After installation;
   - Command: `udisksctl mount --block-device /dev/disk/by-uuid/<uuid>`
 - Fix missing repository under /etc/apt/sources.list.d
 - InSync configuration and symbol link for @gmail.com folder
-- # Download big files from google drive
+- Download big files from cloud
+  - http://www.yuleshow.com/files/ubuntu/chinese-fonts.tar.gz
+  - http://www.yuleshow.com/files/ubuntu/goldendict-dicts.tar.gz
 - Setting
   - Privacy - Screen Lock - Automatic Screen Lock
   - Appearance - Auto-hide the Dock
