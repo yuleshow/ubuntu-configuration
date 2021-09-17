@@ -15,3 +15,5 @@ code
 
 
 Where the `MacOS` is the image name, can be showed by `VBoxManage list vms`
+
+Reference: https://blog.csdn.net/jimmyleeee/article/details/114627727
