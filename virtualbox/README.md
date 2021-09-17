@@ -4,7 +4,7 @@ For MacOS:
 - Add virtual image
 - Run the code
 
-#code
+code
 
     VBoxManage modifyvm "MacOS" --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff
     VBoxManage setextradata "MacOS" "VBoxInternal/Devices/efi/0/Config/DmiSystemProduct" "iMacOS11,5"

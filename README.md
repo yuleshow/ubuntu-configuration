@@ -76,7 +76,7 @@ After installation;
   - SSH type(SmartGit)
   - Style(19.1)
   - Preferences -> Hosting Providers -> Add GitHub and token
-- sudo fc-cache -f -v
+- `sudo fc-cache -f -v`
 - iPhone related compiling and installing
 - Add the following two lines to /etc/enviroment
   - UNZIP="-O CP936"
