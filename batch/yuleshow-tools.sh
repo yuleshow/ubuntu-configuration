@@ -33,5 +33,6 @@ sudo apt install gufw -y
 
 sudo apt install locate -y
 sudo apt install gthumb -y
-
+sudo apt install exfat-fuse -y
+sudo apt install exfat-utils -y
 ~/ubuntu-configuration/batch/yuleshow-arronax.sh
