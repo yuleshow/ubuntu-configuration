@@ -8,6 +8,8 @@ After installation;
 - flatpack
   - `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo`
   - `flatpak install flathub fr.handbrake.ghb`
+  - `flatpak install flathub org.gnome.Extensions`
+  - `flatpak run org.gnome.Extensions`
 - manually install opera
 - `yuleshow-freefilesync` and set desktop shortcut launchable
 - Login to firefox and chrome for synchronization
@@ -33,6 +35,8 @@ After installation;
   - Sound - System Volume - Over-Amplification - Enable  
 - Change background and lock window background by gdm-background
 - Setup thundermail
+  - Install quickFilter extension
+    - Load quickFilter settings
 - GoldenDict
   - Run: `pip3 install google-translate-for-goldendict`
   - Download dictionaries and other files from cloud
@@ -81,3 +85,6 @@ After installation;
 - Add the following two lines to /etc/enviroment
   - UNZIP="-O CP936"
   - ZIPINFO="-O CP936"
+ -----------------------------------
+ In case the virtual-box client can't open the shared folder
+ `sudo usermod -aG vboxsf $(whoami)` run at the client
