@@ -1,5 +1,3 @@
-# for submit test of smartgit
-
 # # make the directories
 # if [ -d ~/Applications ]
 # then
