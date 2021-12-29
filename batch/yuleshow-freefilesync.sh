@@ -17,8 +17,9 @@
 
 
 # wget https://freefilesync.org/download/FreeFileSync_11.12_Linux.tar.gz
-wget https://freefilesync.org/download/FreeFileSync_11.13_Linux.tar.gz
-tar -zxf FreeFileSync_11.13_Linux.tar.gz
-./FreeFileSync_11.13_Install.run 
-rm FreeFileSync_11.13_Install.run
-rm FreeFileSync_11.13_Linux.tar.gz
+# wget https://freefilesync.org/download/FreeFileSync_11.13_Linux.tar.gz
+wget https://freefilesync.org/download/FreeFileSync_11.15_Linux.tar.gz
+tar -zxf FreeFileSync_11.15_Linux.tar.gz
+./FreeFileSync_11.15_Install.run 
+rm FreeFileSync_11.15_Install.run
+rm FreeFileSync_11.15_Linux.tar.gz
