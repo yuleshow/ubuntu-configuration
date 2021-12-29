@@ -10,6 +10,8 @@ After installation;
   - `flatpak install flathub fr.handbrake.ghb`
   - `flatpak install flathub org.gnome.Extensions`
   - `flatpak run org.gnome.Extensions`
+    - Extensions - deactive Ubuntu Dock
+- manually run yuleshow-tools.sh
 - manually install opera
 - `yuleshow-freefilesync` and set desktop shortcut launchable
 - Login to firefox and chrome for synchronization
@@ -25,10 +27,12 @@ After installation;
   - http://www.yuleshow.com/files/ubuntu/goldendict-dicts.tar.gz
 - Setting
   - Privacy - Screen Lock - Automatic Screen Lock
-  - Appearance - Auto-hide the Dock
+  - Appearance - Auto-hide the Dock (in case missed the step of Gnome Extensions)
   - Mouse & Touchpad - Natural Scrolling
-  - Region & Language - Input Sources - RIME
-  - Keyboard Shortcuts - Switch to next input source
+  - Region & Language - Install the missing part (automatically)
+  - Keyboard - Input Sources - RIME
+  - Keyboard - Input Source Switch - Switch input sources individually for each window
+  - Keyboard - Keyboard Shortcuts - Typing - Switch to next input source
   - Default Applications
     - Video - VLC
     - Photos - gThumb
