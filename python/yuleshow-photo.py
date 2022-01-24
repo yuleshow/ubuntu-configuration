@@ -14,7 +14,7 @@ def move_photo(my_photo):
         my_image = Image(image_file)
 
     try:
-        my_datetime_temp  = my_image.datetime
+        my_datetime_temp  = my_image.datetime_original
     except AttributeError:
         now = datetime.now()
         my_datetime_temp  = '2222:22:22 '+str(random.randint(100000, 999999))
