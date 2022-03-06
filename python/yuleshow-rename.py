@@ -46,6 +46,8 @@ def move_photo(my_photo):
     print (new_name)
 
 
+
+
     if (path.exists(new_name+'.JPG')):
             new_JPG = new_name+'-1.JPG'
             print (new_JPG+' exists')
@@ -58,14 +60,12 @@ def move_photo(my_photo):
     if (path.exists(new_name+'-3.JPG')):
             new_JPG = new_name+'-4.JPG'
             print (new_JPG+' exists')
-    if (path.exists(new_name+'-4.JPG')):
-            new_JPG = new_name+'-5.JPG'
-            print (new_JPG+' exists')
-    if (path.exists(new_name+'-5.JPG')):
-            new_JPG = new_name+'-6.JPG'
-            print (new_JPG+' exists')            
+
             
     os.rename(my_photo, new_JPG)
+ #   shutil.move(new_JPG, 'for_picasa/'+new_date)
+ #   print ('Moved ' + new_name + ' to directory ' + new_date)
+
     # image_file = close()
     
 
@@ -86,13 +86,15 @@ for source_dir in glob.glob("*/"):			# read the directories
         print("Error: %s : %s" % (source_dir, e.strerror))   
 
 
+
+    
 for file in glob.glob("*.*"):
     print (file)
     
     [filename, filetype] = file.split('.')
     print ("I got "+file+", it's a "+filetype+" file")
 
-    if (filetype == 'JPG'):
+    if ((filetype == 'JPG') or (filetype == 'jpg')):
         move_photo(file)
     elif (filetype == 'AAE'):
         os.remove(file)
@@ -100,7 +102,7 @@ for file in glob.glob("*.*"):
         now=datetime.now()
         new_name = now.strftime("%Y%m%d_%H%M%S")+"-"+str(random.randint(1000, 9999))+"."+filetype
         os.rename(file, new_name)
-
+#        shutil.move(new_name, 'for_picasa/'+filetype)
     
 
 
