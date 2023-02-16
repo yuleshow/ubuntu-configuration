@@ -8,7 +8,7 @@ sudo apt install plank -y
 
 
 sudo apt install libmuparser2v5 -y
-sudo apt install libqt5concurrent5
+sudo apt install libqt5concurrent5 -y
 sudo apt install libqt5qmlworkerscript5 -y
 sudo apt install qml-module-qtquick-window2 -y
 sudo apt install qml-module-qtquick2 -y
