@@ -28,8 +28,6 @@ sudo apt install qtdeclarative5-dev -y
 sudo apt install libqt5quick5-gles -y
 sudo apt install libqt5quick5 -y
 
-sudo apt install plnak -y
-
 wget https://download.opensuse.org/repositories/home:/manuelschneid3r/Debian_Unstable/amd64/albert_0.17.2-0_amd64.deb
 sudo dpkg -i albert*.deb
 rm albert*.deb
