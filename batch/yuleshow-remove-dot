@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Function to delete dot files and directories, excluding .picasa.ini
+delete_dotfiles() {
+    local path="$1"
+    
+    # Use find to locate and delete dot files on the current path, excluding .picasa.ini
+    find "$path" -name '.*' -type f ! -name '.picasa.ini' -exec rm -rf {} \;
+    
+    # Use find to locate and delete dot directories on the current path
+    find "$path" -name '.*' -type d -exec rm -rf {} \;
+}
+
+# Run the script at the current folder and its subfolders
+current_folder=$(pwd)
+echo "Running the script at: $current_folder"
+
+# Call the function to delete dot files and directories at the current folder
+delete_dotfiles "$current_folder"
+
+# Use 'find' to locate subdirectories and apply the function recursively
+find "$current_folder" -type d -exec bash -c 'delete_dotfiles "$0"' {} \;
+
+echo "Dot files and directories deleted from $current_folder and its subfolders (except .picasa.ini)"

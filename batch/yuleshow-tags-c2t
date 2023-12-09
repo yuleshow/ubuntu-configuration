@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+
+import os
+import pyexiv2
+from opencc import OpenCC
+
+def convert_to_traditional_chinese(keywords):
+    """Convert a list of keywords from Simplified to Traditional Chinese."""
+    cc = OpenCC('s2t')  # s2t: Simplified to Traditional conversion
+    return [cc.convert(keyword) for keyword in keywords]
+
+def process_image_keywords(image_path, log_file, error_log_file):
+    """Process the keywords of an image: convert to Traditional Chinese and write back."""
+    try:
+        with pyexiv2.Image(image_path) as img:
+            iptc_data = img.read_iptc()
+            if 'Iptc.Application2.Keywords' in iptc_data:
+                simplified_keywords = iptc_data['Iptc.Application2.Keywords']
+                traditional_keywords = convert_to_traditional_chinese(simplified_keywords)
+
+                # Update IPTC data with Traditional Chinese keywords
+                img.modify_iptc({'Iptc.Application2.Keywords': traditional_keywords})
+
+                # Write to log file
+                log_entry = f"Updated {image_path}:\nOriginal Keywords: {simplified_keywords}\nTraditional Keywords: {traditional_keywords}\n\n"
+                log_file.write(log_entry)
+
+                # Print detailed status
+                print(f"Processing file: {image_path}")
+                for original, converted in zip(simplified_keywords, traditional_keywords):
+                    print(f"Original Tag: '{original}' -> Converted Tag: '{converted}'")
+                print("\n")
+
+    except Exception as e:
+        error_message = f"Error processing {image_path}: {e}\n\n"
+        error_log_file.write(error_message)
+        print(error_message)
+
+def scan_folder_for_images(folder_path, log_file_path, error_log_file_path):
+    """Scan a folder recursively for image files and process their keywords."""
+    with open(log_file_path, 'w', encoding='utf-8') as log_file, open(error_log_file_path, 'w', encoding='utf-8') as error_log_file:
+        for root, dirs, files in os.walk(folder_path):
+            for file in files:
+                if file.lower().endswith(('.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif')):
+                    image_path = os.path.join(root, file)
+                    process_image_keywords(image_path, log_file, error_log_file)
+
+# Use the current working directory
+current_folder_path = os.getcwd()
+log_file_path = os.path.join(current_folder_path, 'keywords_conversion_log.txt')
+error_log_file_path = os.path.join(current_folder_path, 'keywords_conversion_error_log.txt')
+scan_folder_for_images(current_folder_path, log_file_path, error_log_file_path)
+
+print("Keywords conversion completed. Check 'keywords_conversion_log.txt' for the log and 'keywords_conversion_error_log.txt' for errors.")

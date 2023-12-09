@@ -1,0 +1,58 @@
+#!/usr/bin/env python3
+
+import os
+import shutil
+import time
+import exifread
+
+def rename_and_organize_images(directory):
+    sequence_counter = {}
+    processed_count = 0
+    skipped_count = 0
+
+    for filename in os.listdir(directory):
+        if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+            filepath = os.path.join(directory, filename)
+            
+            try:
+                with open(filepath, 'rb') as f:
+                    tags = exifread.process_file(f)
+                    datetime_original = str(tags.get('EXIF DateTimeOriginal', '')).replace(':', '').replace(' ', '_')
+                    camera_brand = str(tags.get('Image Make', '')).replace(' ', '')
+                    camera_model = str(tags.get('Image Model', '')).replace(' ', '')
+
+                    if datetime_original and camera_brand and camera_model:
+                        date_folder = datetime_original.split('_')[0]
+                        target_directory = os.path.join(directory, date_folder)
+
+                        if not os.path.exists(target_directory):
+                            os.makedirs(target_directory)
+
+                        base_new_filename = f"{datetime_original}-{camera_brand}-{camera_model}"
+                        
+                        sequence = sequence_counter.get(base_new_filename, 0)
+                        sequence_counter[base_new_filename] = sequence + 1
+
+                        if sequence > 0:
+                            new_filename = f"{base_new_filename}_{sequence:03d}.jpg"
+                        else:
+                            new_filename = f"{base_new_filename}.jpg"
+
+                        new_filepath = os.path.join(target_directory, new_filename)
+
+                        shutil.move(filepath, new_filepath)
+                        processed_count += 1
+                        print(f"Moved and renamed '{filename}' to '{new_filepath}'")
+                    else:
+                        print(f"Missing crucial EXIF data for '{filename}'. Skipping...")
+                        skipped_count += 1
+
+            except Exception as e:
+                print(f"Error processing '{filename}': {e}")
+                skipped_count += 1
+
+    print(f"Processing completed. {processed_count} files moved and renamed, {skipped_count} files skipped.")
+
+# Example usage
+directory = os.getcwd()
+rename_and_organize_images(directory)
