@@ -1,22 +1,16 @@
-# for compiling
-sudo apt install autoconf -y
-sudo apt install cmake -y
-sudo apt install build-essential -y
-sudo apt install texinfo -y
-sudo apt install libx11-dev -y
-sudo apt install libxpm-dev -y
-sudo apt install libjpeg-dev -y
-sudo apt install libpng-dev -y
-sudo apt install libgif-dev -y
-sudo apt install libtiff-dev -y
-sudo apt install libgtk2.0-dev -y
-sudo apt install libncurses-dev -y
-sudo apt install gnutls-dev -y
-sudo apt install libgtk-3-dev -y
-# sudo apt install mailutils -y
-sudo apt install ispell -y
-sudo apt install git -y
+# Runtime deps for Emacs (installed regardless of install method).
+sudo apt install -y git ispell
 
+# ---------------------------------------------------------------------------
+# Optional: build Emacs from source. Uncomment the whole block below to use.
+# The build-only -dev packages are kept here so they ship together with the
+# code that actually needs them; they are NOT pulled when installing via apt.
+# ---------------------------------------------------------------------------
+# sudo apt install -y \
+#     autoconf cmake build-essential texinfo \
+#     libx11-dev libxpm-dev libjpeg-dev libpng-dev libgif-dev libtiff-dev \
+#     libgtk2.0-dev libgtk-3-dev libncurses-dev gnutls-dev
+#
 # wget https://ftp.gnu.org/gnu/emacs/emacs-30.1.tar.gz
 # tar -zxf  emacs-30.1.tar.gz
 # cd emacs-30.1
