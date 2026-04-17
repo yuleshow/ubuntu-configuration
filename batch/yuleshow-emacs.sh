@@ -1,5 +1,5 @@
 # Runtime deps for Emacs (installed regardless of install method).
-sudo apt install -y git ispell
+sudo apt install -y git
 
 # ---------------------------------------------------------------------------
 # Optional: build Emacs from source. Uncomment the whole block below to use.
