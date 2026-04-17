@@ -16,10 +16,8 @@
 
 
 
-# wget https://freefilesync.org/download/FreeFileSync_11.12_Linux.tar.gz
-# wget https://freefilesync.org/download/FreeFileSync_11.13_Linux.tar.gz
-wget https://freefilesync.org/download/FreeFileSync_11.15_Linux.tar.gz
-tar -zxf FreeFileSync_11.15_Linux.tar.gz
-./FreeFileSync_11.15_Install.run 
-rm FreeFileSync_11.15_Install.run
-rm FreeFileSync_11.15_Linux.tar.gz
+FFS_VERSION=13.7
+wget "https://freefilesync.org/download/FreeFileSync_${FFS_VERSION}_Linux.tar.gz"
+tar -zxf "FreeFileSync_${FFS_VERSION}_Linux.tar.gz"
+./FreeFileSync_${FFS_VERSION}_Install.run
+rm -f "FreeFileSync_${FFS_VERSION}_Install.run" "FreeFileSync_${FFS_VERSION}_Linux.tar.gz"

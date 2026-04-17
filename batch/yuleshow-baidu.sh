@@ -1,4 +1,5 @@
-# wget http://wppkg.baidupcs.com/issue/netdisk/LinuxGuanjia/3.0.1/baidunetdisk_linux_3.0.1.2.deb
-wget http://wppkg.baidupcs.com/issue/netdisk/Linuxguanjia/3.3.2/baidunetdisk_3.3.2_amd64.deb
-sudo dpkg -i baidunetdisk_3.3.2_amd64.deb
-rm baidunetdisk_3.3.2_amd64.deb
+# Baidu NetDisk 4.x (current as of 2026; check https://pan.baidu.com/download for a newer build)
+BAIDU_VERSION=4.17.7
+wget "https://issuepcdn.baidupcs.com/issue/netdisk/LinuxGuanjia/${BAIDU_VERSION}/baidunetdisk_${BAIDU_VERSION}_amd64.deb"
+sudo apt install -y ./baidunetdisk_${BAIDU_VERSION}_amd64.deb
+rm baidunetdisk_${BAIDU_VERSION}_amd64.deb

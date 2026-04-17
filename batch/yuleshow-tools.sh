@@ -31,8 +31,8 @@ sudo apt install dconf-editor -y
 sudo apt install preload -y
 sudo apt install gufw -y
 
-sudo apt install locate -y
+sudo apt install plocate -y
 sudo apt install gthumb -y
 sudo apt install exfat-fuse -y
-sudo apt install exfat-utils -y
+sudo apt install exfatprogs -y
 ~/ubuntu-configuration/batch/yuleshow-arronax.sh

@@ -13,11 +13,12 @@ sudo apt install automake -y
 sudo apt install xz-utils -y # for tar.xz
 sudo apt install rar unrar p7zip-full p7zip-rar -y # for other compress/extract
 
-sudo apt install openjdk-13-jre -y
+sudo apt install openjdk-21-jre -y
 
 # install the decodes
 sudo apt install ubuntu-restricted-extras -y
 sudo apt install ubuntu-restricted-addons -y
+sudo apt install software-properties-common -y
 
 
 

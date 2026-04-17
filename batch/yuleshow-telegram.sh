@@ -8,8 +8,8 @@ else
 fi
 
 cd ~/Applications
-# wget https://updates.tdesktop.com/tlinux/tsetup.1.8.8.tar.xz
-wget https://updates.tdesktop.com/tlinux/tsetup.2.4.4.tar.xz
-tar -xJf tsetup.2.4.4.tar.xz
+# Telegram's official 'latest' endpoint redirects to the current tdesktop tarball.
+wget -O tsetup-latest.tar.xz https://telegram.org/dl/desktop/linux
+tar -xJf tsetup-latest.tar.xz
 sudo cp ~/ubuntu-configuration/desktops/Telegram.desktop /usr/share/applications/
-rm tsetup.2.4.4.tar.xz
+rm tsetup-latest.tar.xz

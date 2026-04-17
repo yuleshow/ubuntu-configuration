@@ -1,7 +1,6 @@
-# Smartgit
+# SmartGit (latest stable) - syntevo publishes a stable 'latest' .deb URL
 cd ~
 
-# wget https://www.syntevo.com/downloads/smartgit/smartgit-20_2_1.deb
-wget https://www.syntevo.com/downloads/smartgit/smartgit-21_1_0.deb
-sudo dpkg -i smartgit*.deb
-rm smartgit*.deb
+wget -O smartgit-latest.deb https://www.syntevo.com/downloads/smartgit/smartgit-latest.deb
+sudo apt install -y ./smartgit-latest.deb
+rm smartgit-latest.deb

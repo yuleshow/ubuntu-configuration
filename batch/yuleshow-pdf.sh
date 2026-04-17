@@ -1,17 +1,12 @@
 
 sudo apt install gdebi-core -y
-sudo apt install libxml2:i386 -y
-sudo apt install libcanberra-gtk-module:i386 -y
-sudo apt install gtk2-engines-murrine:i386 -y
-sudo apt install libatk-adaptor:i386 -y
 
-wget ftp://ftp.adobe.com/pub/adobe/reader/unix/9.x/9.5.5/enu/AdbeRdr9.5.5-1_i386linux_enu.deb
-sudo dpkg -i AdbeRdr9.5.5-1_i386linux_enu.deb
-rm AdbeRdr9.5.5-1_i386linux_enu.deb
-
+# Note: Adobe Reader for Linux was discontinued in 2013. The old FTP URL is dead.
+# Use native Linux PDF viewers instead:
 sudo apt install okular -y
-
 sudo apt install djview -y
+sudo apt install qpdfview -y
+sudo apt install xpdf -y
 
 
 

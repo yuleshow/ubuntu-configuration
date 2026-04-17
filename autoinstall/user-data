@@ -1,0 +1,345 @@
+#cloud-config
+# =============================================================================
+#  Ubuntu 24.04 LTS (noble) autoinstall / subiquity configuration
+#  ---------------------------------------------------------------------------
+#  Generated from the yuleshow/ubuntu-configuration post-install scripts.
+#  Usage (unattended ISO):
+#    1. Put this file (named user-data) plus an empty file named meta-data on
+#       an HTTP server, or inside /autoinstall/ on the ISO.
+#    2. Boot the Ubuntu 24.04 Server ISO with:
+#         autoinstall ds=nocloud-net;s=http://<host>/
+#    3. After install the VM/PC reboots and runs the first-boot
+#       `yuleshow-firstboot.service` which clones the repo and executes
+#       yuleshow-install.sh as the user.
+#
+#  IMPORTANT: replace the `passwd:` hash below before use.
+#    Generate with:  mkpasswd -m sha-512
+# =============================================================================
+autoinstall:
+  version: 1
+
+  # --- Localisation -------------------------------------------------------- #
+  locale: en_US.UTF-8
+  keyboard:
+    layout: us
+    variant: ""
+  timezone: Asia/Hong_Kong
+
+  # --- Identity & SSH ------------------------------------------------------ #
+  identity:
+    realname: yuleshow
+    hostname: yuleshow-ubuntu
+    username: yuleshow
+    # Replace with your own SHA-512 crypt hash (example hash = 'changeme')
+    password: "$6$rounds=4096$salt$SxEZzGnqPoTzspYCoPrcM.CtrlZt8iDJRe9bu.cPVeOaPr1WHCxqOLkOyG3uA8zDFuehBy4ozxL/2YWhS15RV0"
+  ssh:
+    install-server: true
+    allow-pw: true
+    authorized-keys: []
+
+  # --- Refresh installer --------------------------------------------------- #
+  refresh-installer:
+    update: true
+
+  # --- Storage layout ------------------------------------------------------ #
+  # LVM on the entire first disk. For manual partitioning, replace this block.
+  storage:
+    layout:
+      name: lvm
+      sizing-policy: all
+    swap:
+      size: 0                # zero-sized swap partition; swapfile created by default
+
+  # --- APT configuration --------------------------------------------------- #
+  apt:
+    preserve_sources_list: false
+    geoip: true
+    primary:
+      - arches: [amd64, i386]
+        uri: "http://archive.ubuntu.com/ubuntu"
+      - arches: [default]
+        uri: "http://ports.ubuntu.com/ubuntu-ports"
+    sources:
+      google-chrome.list:
+        source: "deb [arch=amd64 signed-by=$KEY_FILE] https://dl.google.com/linux/chrome/deb/ stable main"
+        keyid: "4CCA1EAF950CEE4AB83976DCA040830F7FAC5991"
+      opera-stable.list:
+        source: "deb [arch=amd64 signed-by=$KEY_FILE] https://deb.opera.com/opera-stable/ stable non-free"
+        keyid: "A5C7FF72E6778F64271B05B6469C4D0F9E11C024"
+      virtualbox.list:
+        source: "deb [arch=amd64 signed-by=$KEY_FILE] https://download.virtualbox.org/virtualbox/debian noble contrib"
+        keyid: "B9F8D658297AF3EFC18D5CDFA2F683C52980AECF"
+      insync.list:
+        source: "deb [arch=amd64 signed-by=$KEY_FILE] http://apt.insync.io/ubuntu noble non-free contrib"
+        keyid: "ACCAF35C"
+      home-manuelschneid3r.list:
+        source: "deb [signed-by=$KEY_FILE] http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_24.04/ /"
+        key: |
+          -----BEGIN PGP PUBLIC KEY BLOCK-----
+          # Paste the contents of
+          #   https://download.opensuse.org/repositories/home:manuelschneid3r/xUbuntu_24.04/Release.key
+          # here, or remove this source to skip Albert launcher.
+          -----END PGP PUBLIC KEY BLOCK-----
+
+  # --- Package list -------------------------------------------------------- #
+  # NOTE: most PPAs (font-manager, flacon, diesch, gerardpuig, umang, ozmartian)
+  # cannot be added in the `apt:` block above reliably (they may lack noble
+  # builds). They are added in `late-commands:` along with their packages.
+  packages:
+    # core / base
+    - cmake
+    - git
+    - curl
+    - wget
+    - npm
+    - snapd
+    - automake
+    - build-essential
+    - xz-utils
+    - rar
+    - unrar
+    - p7zip-full
+    - p7zip-rar
+    - openjdk-21-jre
+    - ubuntu-restricted-extras
+    - ubuntu-restricted-addons
+    - software-properties-common
+    - ca-certificates
+    - gnupg
+    - apt-transport-https
+
+    # python
+    - python3
+    - python3-dev
+    - python3-pip
+    - python3-setuptools
+    - python3-venv
+    - python3-tk
+
+    # emacs + build deps
+    - emacs
+    - autoconf
+    - texinfo
+    - ispell
+    - libx11-dev
+    - libxpm-dev
+    - libjpeg-dev
+    - libpng-dev
+    - libgif-dev
+    - libtiff-dev
+    - libgtk2.0-dev
+    - libncurses-dev
+    - gnutls-dev
+    - libgtk-3-dev
+
+    # browsers / networking
+    - google-chrome-stable
+    - opera-stable
+    - torbrowser-launcher
+    - filezilla
+    - firefox
+
+    # flatpak
+    - flatpak
+    - gnome-software-plugin-flatpak
+
+    # languages (zh-hant, en-gb/au/ca/za, ibus rime)
+    - language-pack-gnome-zh-hant-base
+    - language-pack-gnome-zh-hant
+    - firefox-locale-zh-hant
+    - fonts-arphic-uming
+    - fonts-arphic-ukai
+    - fonts-noto-cjk-extra
+    - gnome-getting-started-docs-zh-hk
+    - hunspell-en-ca
+    - hunspell-en-gb
+    - hunspell-en-au
+    - hunspell-en-za
+    - hyphen-en-ca
+    - hyphen-en-gb
+    - libreoffice-help-en-gb
+    - libreoffice-l10n-en-gb
+    - libreoffice-l10n-en-za
+    - mythes-en-au
+    - thunderbird-locale-zh-hant
+    - thunderbird-locale-en-gb
+    - ibus-rime
+
+    # VirtualBox (from third-party repo)
+    - virtualbox-7.1
+
+    # InSync (from third-party repo)
+    - insync
+    - insync-nautilus
+
+    # Albert launcher (from OBS repo); remove if the OBS key is not pasted above
+    - albert
+
+    # Mac-simple supporting libs + plank
+    - plank
+    - libmuparser2v5
+    - libqt5concurrent5
+    - libqt5qmlworkerscript5
+    - qml-module-qtquick-window2
+    - qml-module-qtquick2
+    - qml-module-qtgraphicaleffects
+    - qml-module-qtqml
+    - qml-module-qtqml-models2
+    - qml-module-qtquick-layouts
+    - qml-module-qtquick-controls
+    - libpython3.12
+    - libpython3.12-minimal
+    - libpython3.12-stdlib
+    - qtdeclarative5-dev
+    - libqt5quick5
+
+    # GNOME tools
+    - chrome-gnome-shell
+    - gnome-tweaks
+    - gnome-panel
+    - gnome-shell-extensions
+    - gnome-sushi
+
+    # audio
+    - audacity
+    - pavucontrol
+    - libfdk-aac-dev
+    - libfdk-aac2
+
+    # general tools
+    - neofetch
+    - whois
+    - gimp
+    - gimp-help-en
+    - duplicity
+    - indicator-sensors
+    - alacarte
+    - gparted
+    - synaptic
+    - bleachbit
+    - dconf-editor
+    - preload
+    - gufw
+    - plocate
+    - gthumb
+    - exfat-fuse
+    - exfatprogs
+
+    # rename / exif
+    - exiv2
+    - rename
+
+    # calibre (also has a snap; apt version is fine on noble)
+    - calibre
+
+    # guake
+    - guake
+
+    # sticky notes (may need PPA for newest; shipped pkg also works)
+    - indicator-stickynotes
+
+    # gdm background helpers
+    - libglib2.0-dev-bin
+
+    # iPhone / iPad / libimobiledevice
+    - libtool
+    - m4
+    - libimobiledevice-utils
+    - ifuse
+    - libusb-1.0-0-dev
+    - libplist-dev
+    - gawk
+    - clang
+    - cython3
+    - libvips
+    - libvips-tools
+    - libssl-dev
+
+    # video
+    - gstreamer1.0-plugins-bad-videoparsers
+    - gstreamer1.0-plugins-bad
+    - mpegdemux
+    - yt-dlp
+    - ffmpeg
+    - mkvtoolnix
+    - mkvtoolnix-gui
+    - vlc
+
+    # PDF
+    - gdebi-core
+    - okular
+    - djview
+    - qpdfview
+    - xpdf
+
+    # dictionary
+    - goldendict
+
+  # --- Snap packages ------------------------------------------------------- #
+  snaps:
+    - name: smartgit
+      classic: true
+    - name: telegram-desktop
+    - name: tifig
+    - name: joplin-desktop
+
+  # --- User-data (cloud-init) ---------------------------------------------- #
+  user-data:
+    disable_root: true
+    timezone: Asia/Hong_Kong
+
+  # --- Late commands ------------------------------------------------------- #
+  # These run in the installer environment with the installed system mounted
+  # at /target. `curtin in-target --` executes inside the new system.
+  late-commands:
+    # -- Clone the post-install config repo as the target user ---------------
+    - curtin in-target --target=/target -- bash -c 'sudo -u yuleshow git clone https://github.com/yuleshow/ubuntu-configuration.git /home/yuleshow/ubuntu-configuration'
+    - curtin in-target --target=/target -- bash -c 'chown -R yuleshow:yuleshow /home/yuleshow/ubuntu-configuration'
+    - curtin in-target --target=/target -- bash -c 'cp /home/yuleshow/ubuntu-configuration/bin/* /usr/local/bin/ 2>/dev/null || true; chmod +x /usr/local/bin/*'
+
+    # -- Add PPAs that don't fit in the apt: block (done now so that first-boot
+    #    script can install their packages without interactive prompts) -------
+    - curtin in-target --target=/target -- add-apt-repository -y ppa:font-manager/staging
+    - curtin in-target --target=/target -- add-apt-repository -y ppa:flacon
+    - curtin in-target --target=/target -- add-apt-repository -y ppa:diesch/stable
+    - curtin in-target --target=/target -- add-apt-repository -y ppa:gerardpuig/ppa
+    - curtin in-target --target=/target -- add-apt-repository -y ppa:umang/indicator-stickynotes
+    - curtin in-target --target=/target -- add-apt-repository -y ppa:ozmartian/apps
+    - curtin in-target --target=/target -- apt-get update
+    - curtin in-target --target=/target -- apt-get install -y font-manager flacon arronax ubuntu-cleaner vidcutter || true
+
+    # -- Flathub ------------------------------------------------------------
+    - curtin in-target --target=/target -- bash -c 'flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo'
+
+    # -- Create a first-boot systemd one-shot that runs yuleshow-install.sh
+    #    as the user once a graphical session is reachable. ------------------
+    - |
+      curtin in-target --target=/target -- bash -c 'cat >/etc/systemd/system/yuleshow-firstboot.service <<EOF
+      [Unit]
+      Description=Run yuleshow post-install script on first boot
+      After=network-online.target graphical.target
+      Wants=network-online.target
+      ConditionPathExists=!/var/lib/yuleshow-firstboot.done
+
+      [Service]
+      Type=oneshot
+      User=yuleshow
+      Group=yuleshow
+      WorkingDirectory=/home/yuleshow
+      Environment=HOME=/home/yuleshow
+      ExecStart=/bin/bash -lc "cd /home/yuleshow && bash ubuntu-configuration/yuleshow-install.sh 2>&1 | tee /home/yuleshow/yuleshow-install.log"
+      ExecStartPost=/bin/bash -c "touch /var/lib/yuleshow-firstboot.done"
+      RemainAfterExit=yes
+      TimeoutStartSec=0
+
+      [Install]
+      WantedBy=multi-user.target
+      EOF
+      systemctl enable yuleshow-firstboot.service'
+
+  # --- Shutdown / reboot once complete ------------------------------------- #
+  shutdown: reboot
+
+  # --- Error handling ------------------------------------------------------ #
+  error-commands:
+    - tar c /var/log/installer | xz -0 > /target/var/log/installer.tar.xz || true

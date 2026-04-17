@@ -1,4 +1,6 @@
 sudo apt install fonts-symbola -y
-wget https://download.01.org/gfx/ubuntu/17.04/main/pool/main/i/intel-graphics-update-tool/intel-graphics-update-tool_2.0.6_amd64.deb
-sudo dpkg -i intel-graphics-update-tool_2.0.6_amd64.deb
-rm -r intel-graphics-update-tool_2.0.6_amd64.deb
+# Intel Graphics Update Tool was discontinued by Intel in 2019.
+# On Ubuntu 24.04 (noble), the in-kernel i915/Xe drivers are current; no extra package needed.
+# For the latest Intel compute/media stack, enable the Intel graphics PPA instead:
+#   sudo add-apt-repository -y ppa:kisak/kisak-mesa
+#   sudo apt update && sudo apt upgrade -y

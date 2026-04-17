@@ -64,8 +64,7 @@ sudo apt install qt5-gtk-platformtheme -y
 sudo apt install qttranslations5-l10n -y
 
 # sudo apt install python3-pyqt5 -y
-# wget https://launchpad.net/~dupeguru/+archive/ubuntu/ppa/+files/dupeguru_4.1.1-0~ppa~focal1_amd64.deb
-wget https://launchpad.net/~dupeguru/+archive/ubuntu/ppa/+files/dupeguru_4.1.1-0~ppa~bionic1_amd64.deb
-sudo dpkg -i dupeguru*.deb
-rm dupeguru*.deb
+# The PPA is unmaintained and has no 'noble' build. Use the Flatpak instead:
+flatpak install -y flathub io.github.arsenetar.dupeguru.dupeguru || \
+    echo "Flatpak install skipped; run after flathub remote is added."
 

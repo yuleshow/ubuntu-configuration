@@ -18,7 +18,8 @@ else
 fi
 
 
-wget https://github.com/enzo1982/freac/releases/download/v1.1.4/freac-1.1.4-linux-x86_64.AppImage
+FREAC_VERSION=1.1.7
+wget "https://github.com/enzo1982/freac/releases/download/v${FREAC_VERSION}/freac-${FREAC_VERSION}-linux-x86_64.AppImage"
 chmod +x freac*.AppImage
 mv freac*.AppImage ~/Applications
 sudo cp ~/ubuntu-configuration/desktops/freac.desktop /usr/share/applications/

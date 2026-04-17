@@ -1,6 +1,6 @@
-# Whatever
-sudo apt install libindicator7 libappindicator1 -y
-wget https://sourceforge.net/projects/whatever-evernote-client/files/v1.0.0/Whatever_1.0.0_amd64.deb
-sudo dpkg -i Whatever_1.0.0_amd64.deb
-rm Whatever_1.0.0_amd64.deb
-sudo apt --fix-broken install -y
+# 'Whatever' (Evernote client) was abandoned and its SourceForge binary no longer
+# works on modern Ubuntu (depends on libappindicator1 which was removed in focal).
+# This script is intentionally a no-op; use Joplin or the Evernote web app instead.
+# Example alternative (uncomment to enable):
+# sudo snap install joplin-desktop
+true

@@ -1,11 +1,11 @@
-# InSync
-# sudo cp ubuntu-configuration/list.d/insync.list /etc/apt/sources.list.d
-# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ACCAF35C
-# sudo apt update
-# sudo apt install insync insync-nautilus -y
+# InSync (latest) via official apt repo for Ubuntu 24.04 (noble)
+# Reference: https://help.insynchq.com/installation-and-setup/linux-installation/
 
+wget -qO- https://apt.insync.io/gpg/ACCAF35C.gpg \
+    | sudo gpg --dearmor --yes -o /usr/share/keyrings/insync.gpg
 
-# wget https://d2t3ff60b2tol4.cloudfront.net/builds/insync_3.2.9.40883-focal_amd64.deb
-wget https://d2t3ff60b2tol4.cloudfront.net/builds/insync_3.5.3.50123-focal_amd64.deb
-sudo dpkg -i insync*.deb
-rm insync*.deb
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/insync.gpg] http://apt.insync.io/ubuntu noble non-free contrib" \
+    | sudo tee /etc/apt/sources.list.d/insync.list
+
+sudo apt update
+sudo apt install -y insync insync-nautilus

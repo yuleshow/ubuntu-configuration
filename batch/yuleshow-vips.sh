@@ -13,17 +13,16 @@ sudo apt install libtiff-dev -y
 sudo apt install libvips -y
 
 cd ~
-#wget https://github.com/libvips/libvips/releases/download/v8.6.1/vips-8.6.1.tar.gz
-wget https://github.com/libvips/libvips/releases/download/v8.10.6/vips-8.10.6.tar.gz
-# wget https://github.com/jcupitt/libvips/releases/download/v8.6.1/vips-8.6.1.tar.gz
-tar xzf vips-8.10.6.tar.gz
+VIPS_VERSION=8.16.2
+wget "https://github.com/libvips/libvips/releases/download/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz"
+tar xJf "vips-${VIPS_VERSION}.tar.xz"
 
-cd vips-8.10.6
+cd "vips-${VIPS_VERSION}"
 ./configure
 make
 sudo make install
 sudo ldconfig
 cd ..
 
-rm vips-8.10.6.tar.gz
-rm -f -r vips-8.10.6
+rm -f "vips-${VIPS_VERSION}.tar.xz"
+rm -rf "vips-${VIPS_VERSION}"

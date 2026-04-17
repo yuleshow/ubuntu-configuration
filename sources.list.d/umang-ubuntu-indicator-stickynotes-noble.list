@@ -1,0 +1,4 @@
+deb http://ppa.launchpad.net/umang/indicator-stickynotes/ubuntu/ jammy main
+# deb-src http://ppa.launchpad.net/umang/indicator-stickynotes/ubuntu/ jammy main
+# Note: upstream PPA has not released a 'noble' build yet (as of 2026).
+# The jammy (22.04) package installs and runs correctly on Ubuntu 24.04.

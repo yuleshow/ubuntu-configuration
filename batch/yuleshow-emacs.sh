@@ -17,16 +17,16 @@ sudo apt install libgtk-3-dev -y
 sudo apt install ispell -y
 sudo apt install git -y
 
-# wget http://gnu.mirror.iweb.com/emacs/emacs-27.1.tar.gz
-# tar -zxf  emacs-27.1.tar.gz
-# cd emacs-27.1
+# wget https://ftp.gnu.org/gnu/emacs/emacs-30.1.tar.gz
+# tar -zxf  emacs-30.1.tar.gz
+# cd emacs-30.1
 # ./autogen.sh
 # ./configure
 # make
 # sudo make install
 # cd ..
-# rm -r -f emacs-27.1
-# rm emacs-27.1.tar.gz
+# rm -r -f emacs-30.1
+# rm emacs-30.1.tar.gz
 
 # for installing directly
 sudo apt install emacs -y

@@ -18,16 +18,19 @@ sudo apt install qml-module-qtqml-models2 -y
 sudo apt install qml-module-qtquick-layouts -y
 sudo apt install qml-module-qtquick-controls -y
 
-sudo apt install libpython3.9-minimal -y
-sudo apt install libpython3.9-stdlib -y
-sudo apt install libpython3.9 -y
-sudo apt install libkf5webkit-dev -y
-sudo apt install libqtquick5 -y
-sudo apt install libqt5webkit5-dev -y
+# Ubuntu 24.04 (noble) ships Python 3.12.
+sudo apt install libpython3.12-minimal -y
+sudo apt install libpython3.12-stdlib -y
+sudo apt install libpython3.12 -y
 sudo apt install qtdeclarative5-dev -y
-sudo apt install libqt5quick5-gles -y
 sudo apt install libqt5quick5 -y
 
-wget https://download.opensuse.org/repositories/home:/manuelschneid3r/Debian_Unstable/amd64/albert_0.17.2-0_amd64.deb
-sudo dpkg -i albert*.deb
-rm albert*.deb
+# Albert launcher (latest) from the project's official openSUSE OBS repo for Ubuntu 24.04.
+# Reference: https://albertlauncher.github.io/installing/
+wget -qO- https://download.opensuse.org/repositories/home:manuelschneid3r/xUbuntu_24.04/Release.key \
+    | gpg --dearmor \
+    | sudo tee /etc/apt/trusted.gpg.d/home_manuelschneid3r.gpg > /dev/null
+echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_24.04/ /' \
+    | sudo tee /etc/apt/sources.list.d/home:manuelschneid3r.list
+sudo apt update
+sudo apt install -y albert

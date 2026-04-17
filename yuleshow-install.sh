@@ -78,7 +78,7 @@ sudo cp ubuntu-configuration/bin/* /usr/local/bin
 
 # ~/ubuntu-configuration/batch/yuleshow-vips.sh   # moved to iphone batch
 # ~/ubuntu-configuration/batch/yuleshow-tifig.sh  # moved to iphone batch
-~/ubuntu-configuration/batch/yuleshow-crossover.sh
+# ~/ubuntu-configuration/batch/yuleshow-crossover.sh   # disabled by request
 ~/ubuntu-configuration/batch/yuleshow-telegram.sh
 ~/ubuntu-configuration/batch/yuleshow-pdf.sh
 

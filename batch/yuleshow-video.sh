@@ -11,9 +11,9 @@
 # flatpak install flathub fr.handbrake.ghb
 sudo apt install gstreamer1.0-plugins-bad-videoparsers -y
 sudo apt install gstreamer1.0-plugins-bad -y
-# sudo apt install gstreamer1.0-plugins-bad-faad -y
 sudo apt install mpegdemux -y
-sudo apt install youtube-dl -y
+# youtube-dl is unmaintained; yt-dlp is the community-maintained successor.
+sudo apt install yt-dlp -y
 sudo apt install ffmpeg -y
 # snap install playlist-dl
 
