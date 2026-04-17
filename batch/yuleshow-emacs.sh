@@ -32,7 +32,20 @@ sudo apt install git -y
 sudo apt install emacs -y
 
 
-
+# Modern convention: a single ~/.emacs.d/ directory holds everything
+# (init.el, packages, themes, auto-saves). Avoid the legacy ~/.emacs file.
+cd ~
 git clone https://github.com/yuleshow/yuleshow-dotemacs.git
-ln -s yuleshow-dotemacs ~/.emacs.d
-ln -s yuleshow-dotemacs/new.emacs ~/.emacs
+
+# Back up any pre-existing config so the symlink can be created cleanly.
+[ -e ~/.emacs ]   && mv ~/.emacs   ~/.emacs.backup.$(date +%s)
+[ -e ~/.emacs.d ] && [ ! -L ~/.emacs.d ] && mv ~/.emacs.d ~/.emacs.d.backup.$(date +%s)
+[ -L ~/.emacs.d ] && rm ~/.emacs.d
+
+ln -s ~/yuleshow-dotemacs ~/.emacs.d
+
+# Ensure the entry point is named init.el (modern standard). If the repo
+# still ships new.emacs as the main config, symlink it so Emacs picks it up.
+if [ ! -e ~/.emacs.d/init.el ] && [ -e ~/.emacs.d/new.emacs ]; then
+    ln -s new.emacs ~/.emacs.d/init.el
+fi
