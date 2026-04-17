@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+
+import os
+import re
+from PIL import Image
+from datetime import datetime
+
+def clean_text(text):
+    """Remove leading/trailing spaces and replace inner spaces with hyphens."""
+    return re.sub(r'\s+', '-', text.strip())
+
+def get_exif_data(filename):
+    """Extract EXIF data from an image."""
+    try:
+        with Image.open(filename) as img:
+            exif_data = img._getexif()
+        return exif_data if exif_data else {}
+    except IOError:
+        return {}
+
+def format_filename(date, camera_make, camera_model, ext, counter=None):
+    """Format the filename based on the given data."""
+    date_str = date.strftime("%Y%m%d_%H%M%S")
+    camera_info = f"{clean_text(camera_make)}-{clean_text(camera_model)}"
+    counter_str = f"-{counter:03d}" if counter is not None else ""
+    return f"{date_str}{counter_str}-{camera_info}.{ext.upper()}"
+
+def create_folder(date):
+    """Create a folder for the given date."""
+    folder_name = date.strftime("%Y%m%d")
+    if not os.path.exists(folder_name):
+        os.makedirs(folder_name)
+    return folder_name
+
+def rename_and_move_photos():
+    """Rename photos and move them to respective folders."""
+    for filename in os.listdir('.'):
+        if filename.lower().endswith(('.jpg', '.jpeg', '.png')):
+            exif = get_exif_data(filename)
+
+            # Extract date, camera make, and camera model from EXIF data
+            date = datetime.strptime(exif.get(36867), '%Y:%m:%d %H:%M:%S') if 36867 in exif else None
+            camera_make = exif.get(271, '') if 271 in exif else ''
+            camera_model = exif.get(272, '') if 272 in exif else ''
+
+            if date and camera_make and camera_model:
+                folder_name = create_folder(date)
+                new_name_base = format_filename(date, camera_make, camera_model, filename.split('.')[-1])
+                new_name = os.path.join(folder_name, new_name_base)
+                counter = 1
+
+                # Check for duplicates
+                while os.path.exists(new_name):
+                    new_name = os.path.join(folder_name, format_filename(date, camera_make, camera_model, filename.split('.')[-1], counter))
+                    counter += 1
+
+                os.rename(filename, new_name)
+                print(f'Moved "{filename}" to "{new_name}"')
+            else:
+                print(f'Skipped "{filename}": Missing EXIF data')
+        else:
+            print(f'Skipped "{filename}": Not a supported image file')
+
+rename_and_move_photos()

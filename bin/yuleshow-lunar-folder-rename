@@ -1,0 +1,128 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import os
+import sys
+import re
+from datetime import datetime, timedelta
+
+try:
+    from lunarcalendar import Converter, Solar
+except ImportError:
+    print("請執行: python3 -m pip install lunarcalendar --break-system-packages")
+    sys.exit(1)
+
+def get_us_holiday(dt):
+    month, day, weekday = dt.month, dt.day, dt.weekday() 
+    nth_day = (day - 1) // 7 + 1
+    
+    fixed = {
+        (1, 1): "New Year's Day", (2, 14): "Valentine's Day", (3, 17): "St. Patrick's Day",
+        (7, 4): "Independence Day", (10, 31): "Halloween", (11, 11): "Veterans Day",
+        (12, 24): "Christmas Eve", (12, 25): "Christmas Day",
+    }
+    
+    if month == 1 and weekday == 0 and nth_day == 3: return "Martin Luther King Jr. Day"
+    if month == 2 and weekday == 0 and nth_day == 3: return "Presidents' Day"
+    if month == 5 and weekday == 0 and (dt + timedelta(days=7)).month == 6: return "Memorial Day"
+    if month == 6 and day == 19: return "Juneteenth"
+    if month == 9 and weekday == 0 and nth_day == 1: return "Labor Day"
+    if month == 10 and weekday == 0 and nth_day == 2: return "Columbus Day"
+    if month == 11 and weekday == 3 and nth_day == 4: return "Thanksgiving"
+
+    return fixed.get((month, day))
+
+def get_solar_term(dt):
+    """手動匹配二十四節氣 (公曆估算，精確度足夠歸檔使用)"""
+    month, day = dt.month, dt.day
+    # 節氣日期對照表 (月: (日1, 名稱1, 日2, 名稱2))
+    terms = {
+        1: (5, "小寒", 20, "大寒"), 2: (4, "立春", 19, "雨水"),
+        3: (5, "驚蟄", 20, "春分"), 4: (4, "清明", 20, "穀雨"),
+        5: (5, "立夏", 21, "小滿"), 6: (5, "芒種", 21, "夏至"),
+        7: (7, "小暑", 22, "大暑"), 8: (7, "立秋", 23, "處暑"),
+        9: (7, "白露", 22, "秋分"), 10: (8, "寒露", 23, "霜降"),
+        11: (7, "立冬", 22, "小雪"), 12: (7, "大雪", 21, "冬至")
+    }
+    m_terms = terms.get(month)
+    if m_terms:
+        if day == m_terms[0]: return m_terms[1]
+        if day == m_terms[2]: return m_terms[3]
+    return None
+
+def get_lunar_info(date_str):
+    try:
+        dt = datetime.strptime(date_str, "%Y%m%d")
+    except ValueError:
+        return None
+
+    solar = Solar(dt.year, dt.month, dt.day)
+    lunar = Converter.Solar2Lunar(solar)
+    
+    weekdays = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"]
+    months_cn = ["正月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "冬月", "臘月"]
+    days_cn = ["初一", "初二", "初三", "初四", "初五", "初六", "初七", "初八", "初九", "初十", 
+               "十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八", "十九", "二十", 
+               "廿一", "廿二", "廿三", "廿四", "廿五", "廿六", "廿七", "廿八", "廿九", "三十"]
+    
+    l_month, l_day = lunar.month, lunar.day
+    is_leap = getattr(lunar, 'isleap', False)
+    found_events = []
+
+    # 1. 吳地農曆節日
+    festivals = {
+        (1, 1): "春節", (1, 15): "元宵節", (2, 2): "龍抬頭", (2, 19): "觀音誕",
+        (4, 8): "佛誕", (5, 5): "端午節", (6, 19): "觀音成道", (7, 7): "七夕",
+        (7, 15): "中元節", (8, 15): "中秋節", (9, 9): "重陽節", (9, 19): "觀音出家",
+        (12, 8): "臘八節", (12, 24): "小年(廿四夜)"
+    }
+    if not is_leap and (l_month, l_day) in festivals:
+        found_events.append(festivals[(l_month, l_day)])
+
+    # 2. 大年夜/小年夜 (動態判斷)
+    tomorrow = dt + timedelta(days=1)
+    tomorrow_l = Converter.Solar2Lunar(Solar(tomorrow.year, tomorrow.month, tomorrow.day))
+    if not is_leap and l_month == 12:
+        if tomorrow_l.month == 1:
+            found_events.append("大年夜")
+        else:
+            after_tomorrow = dt + timedelta(days=2)
+            after_t_l = Converter.Solar2Lunar(Solar(after_tomorrow.year, after_tomorrow.month, after_tomorrow.day))
+            if after_t_l.month == 1:
+                found_events.append("小年夜")
+
+    # 3. 節氣與美國節日
+    term = get_solar_term(dt)
+    if term: found_events.append(term)
+    
+    us_h = get_us_holiday(dt)
+    if us_h: found_events.append(us_h)
+
+    # 4. 干支計算
+    gan, zhi = "甲乙丙丁戊己庚辛壬癸", "子丑寅卯辰巳午未申酉戌亥"
+    ganzhi_year = f"{gan[(lunar.year-4)%10]}{zhi[(lunar.year-4)%12]}"
+
+    event_str = f" {' '.join(found_events)}" if found_events else ""
+    return f"{weekdays[dt.weekday()]} {ganzhi_year}年 {'閏' if is_leap else ''}{months_cn[l_month-1]}{days_cn[l_day-1]}{event_str}"
+
+def main():
+    cwd = os.getcwd()
+    print(f"--- 閣主，正在整理蘇州/美國雙文化目錄: {cwd} ---")
+    date_pattern = re.compile(r"^(\d{8})")
+    
+    for root, dirs, files in os.walk(cwd, topdown=False):
+        for dirname in dirs:
+            match = date_pattern.match(dirname)
+            if match:
+                info = get_lunar_info(match.group(1))
+                if info:
+                    suffix = f" | {info}"
+                    if suffix not in dirname:
+                        new_name = f"{dirname}{suffix}"
+                        try:
+                            os.rename(os.path.join(root, dirname), os.path.join(root, new_name))
+                            print(f"✅ {dirname} -> {new_name}")
+                        except Exception as e: print(f"❌ 錯誤: {e}")
+
+if __name__ == "__main__":
+    main()

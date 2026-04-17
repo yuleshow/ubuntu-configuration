@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+"""
+yuleshow-heif-jpg: cross-platform HEIC/HEIF → JPG batch converter.
+
+Works on macOS and Linux. Install deps with:
+    pip install --user --break-system-packages Pillow pillow-heif
+"""
+import sys
+from pathlib import Path
+
+from PIL import Image
+
+try:
+    from pillow_heif import register_heif_opener
+except ImportError:
+    print("Missing dependency: pillow-heif")
+    print("Install with: pip install --user --break-system-packages pillow-heif")
+    sys.exit(1)
+
+register_heif_opener()
+
+
+def convert(target_dir: Path) -> None:
+    if not target_dir.is_dir():
+        print(f"Error: {target_dir} is not a directory.")
+        sys.exit(1)
+
+    files = sorted(
+        p for p in target_dir.iterdir()
+        if p.is_file() and p.suffix.lower() in {".heic", ".heif"}
+    )
+    if not files:
+        print(f"No HEIC/HEIF files found in: {target_dir}")
+        return
+
+    print(f"Converting {len(files)} file(s) in: {target_dir}")
+    for src in files:
+        dst = src.with_suffix(".jpg")
+        try:
+            with Image.open(src) as im:
+                im.convert("RGB").save(dst, "JPEG", quality=95)
+            print(f"✅ {src.name} → {dst.name}")
+        except Exception as e:  # noqa: BLE001
+            print(f"❌ {src.name}: {e}")
+
+
+if __name__ == "__main__":
+    target = Path(sys.argv[1]) if len(sys.argv) > 1 else Path.cwd()
+    convert(target)

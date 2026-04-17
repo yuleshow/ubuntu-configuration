@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+
+from pathlib import Path
+from PIL import Image
+import pillow_avif
+
+def avif_to_jpg(input_path):
+    input_path = Path(input_path)
+    if not input_path.exists():
+        print(f"File not found: {input_path}")
+        return
+
+    if input_path.suffix.lower() != ".avif":
+        print("Input must be .avif file.")
+        return
+
+    output_path = input_path.with_suffix(".jpg")
+    img = Image.open(input_path)
+    img.convert("RGB").save(output_path, "JPEG")
+    print(f"✅ Saved: {output_path}")
+
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) != 2:
+        print("Usage: yuleshow-avif2jpg input.avif")
+    else:
+        avif_to_jpg(sys.argv[1])

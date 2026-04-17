@@ -1,0 +1,167 @@
+#!/usr/bin/env python3
+
+import os
+import glob
+import re
+from PIL import Image, ImageDraw, ImageFont, ImageOps
+import opencc
+
+# =================================================================
+# 1. 【核心字典與轉換器】 
+# =================================================================
+
+# 初始化 OpenCC 繁轉簡轉換器 (t2s: Traditional to Simplified)
+converter = opencc.OpenCC('t2s')
+
+# L3 系列名稱對應表 (硬編碼，確保 100% 準確)
+L3_MAP_TC = {'麵': '麵和澆頭系列', '上': '上海老風味', '西': '家庭西餐', '異': '異域風味', '瞎': '閣主瞎燒燒', '鹹': '鹹泡飯'}
+L3_MAP_SC = {'麵': '面和浇头系列', '面': '面和浇头系列', '上': '上海老风味', '西': '家庭西餐', '異': '异域风味', '瞎': '阁主瞎烧烧', '鹹': '咸泡饭'}
+
+def to_old_school_chinese(n):
+    """地道老派數字: 123 -> 一百廿三, 234 -> 二百卅四"""
+    d = {0: '', 1: '一', 2: '二', 3: '三', 4: '四', 5: '五', 6: '六', 7: '七', 8: '八', 9: '九'}
+    spec = {2: '廿', 3: '卅', 4: '卌'}
+    if n == 0: return "零"
+    res = ""
+    if n >= 100:
+        h = n // 100
+        res += (d[h] if h > 1 else "一") + "百"
+        n %= 100
+        if 0 < n < 10: res += "零"
+    if n >= 10:
+        t, u = n // 10, n % 10
+        if t in spec: res += spec[t] + d[u]
+        else: res += (d[t] if t > 1 else "") + "十" + d[u]
+    elif n > 0 or res == "": res += d[n]
+    return res
+
+def get_dynamic_size_multiline(text, font_path, max_w, stroke_w, start_size=133, max_h=550):
+    """支持多行文字的動態字號計算"""
+    size = start_size
+    temp_img = Image.new("RGBA", (1, 1))
+    temp_draw = ImageDraw.Draw(temp_img)
+    while size > 20:
+        font = ImageFont.truetype(font_path, size)
+        bbox = temp_draw.multiline_textbbox((0, 0), text, font=font, stroke_width=stroke_w, align="center")
+        w, h = bbox[2] - bbox[0], bbox[3] - bbox[1]
+        if w <= max_w and h <= max_h: return size
+        size -= 2
+    return size
+
+def draw_vertical_text(draw, text, pos, font, fill, stroke_w, stroke_f):
+    x, y = pos
+    for char in text:
+        draw.text((x, y), char, font=font, fill=fill, stroke_width=stroke_w, stroke_fill=stroke_f, anchor="mm")
+        y += font.size * 1.11
+
+# =================================================================
+# 2. 【生產引擎】
+# =================================================================
+
+def produce_thumbnail(photo_path, config, mode, w, h, suffix):
+    canvas = Image.new("RGBA", (w, h), (0, 204, 0)) # BORDER_GREEN
+    photo = ImageOps.fit(Image.open(photo_path).convert("RGBA"), (w-120, h-120), method=Image.Resampling.LANCZOS)
+    canvas.paste(photo, (60, 60))
+    draw = ImageDraw.Draw(canvas)
+
+    is_sc = (mode == "SC")
+    # Font base: overridable via $YULESHOW_COVER_FONTS.
+    # Defaults to ~/yuleshow-github/yuleshow-cover/fonts/ (works on macOS & Linux).
+    f_base = os.environ.get(
+        "YULESHOW_COVER_FONTS",
+        os.path.expanduser("~/yuleshow-github/yuleshow-cover/fonts/"),
+    )
+    if not f_base.endswith(os.sep):
+        f_base += os.sep
+    sc_tc = "SC" if is_sc else "TC"
+
+    # Pick a reasonable fallback "Arial Bold" on each OS.
+    if os.path.exists("/System/Library/Fonts/Supplemental/Arial Bold.ttf"):
+        arial_bold = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
+    elif os.path.exists("/usr/share/fonts/truetype/msttcorefonts/Arial_Bold.ttf"):
+        arial_bold = "/usr/share/fonts/truetype/msttcorefonts/Arial_Bold.ttf"
+    else:
+        arial_bold = f"{f_base}NotoSans{sc_tc}-Bold.ttf"  # graceful fallback
+
+    fonts = {
+        "BOLD": f"{f_base}NotoSans{sc_tc}-Bold.ttf",
+        "SERIF": f"{f_base}NotoSerif{sc_tc}-Black.ttf",
+        "SANS": f"{f_base}NotoSans{sc_tc}-Black.ttf",
+        "WZM": f"{f_base}SentyWen.ttf",
+        "HERM": f"{f_base}Cinzel-Regular.ttf",
+        "SANZ": f"{f_base}Sanchez-Regular.ttf",
+        "ARIAL": arial_bold,
+    }
+
+    # L1: 集數 (OpenCC 轉換)
+    ep_raw = f"總第{config['l1_num']}集"
+    ep_final = converter.convert(ep_raw) if is_sc else ep_raw
+    draw.text((w - 189, 94), ep_final, font=ImageFont.truetype(fonts["BOLD"], 50), fill=(0,0,0), stroke_width=3, stroke_fill=(255,255,255), anchor="mm")
+    
+    # L2: Slogan
+    draw.text((108.3, 170), "YULE SHOW'S GOURMET CHATTING", font=ImageFont.truetype(fonts["HERM"], 61), fill=(0,0,0), stroke_width=2, stroke_fill=(255,255,255), anchor="lm")
+    
+    # L3: 系列名 (硬編碼映射)
+    match = re.match(r'([^\d]+)(\d+)', config["l3_code"])
+    prefix_key = match.group(1)
+    num_str = to_old_school_chinese(int(match.group(2)))
+    l3_final = f"{L3_MAP_SC.get(prefix_key, prefix_key) if is_sc else L3_MAP_TC.get(prefix_key, prefix_key)}之{num_str}"
+    l3_max_w = (w - 217) - 108.3 - 50 
+    l3_sz = get_dynamic_size_multiline(l3_final, fonts["SERIF"], l3_max_w, 10, start_size=133)
+    draw.text((108.3, 260), l3_final, font=ImageFont.truetype(fonts["SERIF"], l3_sz), fill=(255,255,0), stroke_width=10, stroke_fill=(0,0,0), anchor="lm")
+
+    # --- L4: 中文主標 (OpenCC 轉換 + 換行解析) ---
+    title_raw = config["title_tc"].replace("\\n", "\n") # 處理終端輸入的 \n
+    title_final = converter.convert(title_raw) if is_sc else title_raw
+    l4_sz = get_dynamic_size_multiline(title_final, fonts["SANS"], w-480, 8, start_size=400, max_h=600)
+    f4 = ImageFont.truetype(fonts["SANS"], l4_sz)
+    draw.multiline_text((w/2, 540), title_final, font=f4, fill=(255,0,0), stroke_width=8, stroke_fill=(255,255,255), anchor="mm", align="center", spacing=10)
+    
+    # --- L5: 英文主標 (換行解析) ---
+    en_raw = config["en_title"].replace("\\n", "\n")
+    en_final = en_raw.title() if "\n" not in en_raw else "\n".join([s.strip().title() for s in en_raw.split("\n")])
+    l5_sz = get_dynamic_size_multiline(en_final, fonts["SANZ"], w-480, 3, start_size=100, max_h=200)
+    f5 = ImageFont.truetype(fonts["SANZ"], l5_sz)
+    l4_bbox = draw.multiline_textbbox((w/2, 540), title_final, font=f4, anchor="mm", stroke_width=8)
+    draw.multiline_text((w/2, l4_bbox[3] + 45), en_final, font=f5, fill=(0,0,0), stroke_width=3, stroke_fill=(255,255,255), anchor="ma", align="center", spacing=8)
+
+    # L6: TM
+    draw.text((w - 115, 180), "TM", font=ImageFont.truetype(fonts["ARIAL"], 47), fill=(0,255,0), stroke_width=4, stroke_fill=(0,0,0), anchor="mm")
+    
+    # L7: 菜話標籤 (OpenCC 轉換)
+    tag_raw = "梅璽閣菜話"
+    tag_final = converter.convert(tag_raw) if is_sc else tag_raw
+    f7 = ImageFont.truetype(fonts["WZM"], 133)
+    draw_vertical_text(draw, tag_final, (w - 150, 246), f7, (0,255,0), 6, (0,0,0))
+
+    canvas.save(f"OUT_{suffix}_{title_final.replace(chr(10), '_')}.png")
+
+# =================================================================
+# 3. 【交互啟動】
+# =================================================================
+
+if __name__ == "__main__":
+    print("\n--- 梅璽閣主 封面 OpenCC 終極版 V16.4 ---")
+    try:
+        ep = input("‣ 總集數: ").strip()
+        l3 = input("‣ 系列代碼: ").strip()
+        tc = input("‣ 中文主標 (換行請打 \\n): ").strip()
+        en = input("‣ 英文主標 (換行請打 \\n): ").strip()
+        
+        cfg = {"l1_num": ep, "l3_code": l3, "title_tc": tc, "en_title": en}
+        images = glob.glob("*.jpg") + glob.glob("*.JPG") + glob.glob("*.jpeg")
+        if images:
+            target = images[0]
+            produce_thumbnail(target, cfg, "TC", 1920, 1080, "16x9_繁")
+            produce_thumbnail(target, cfg, "SC", 1920, 1080, "16x9_简")
+            produce_thumbnail(target, cfg, "SC", 1440, 1080, "4x3_简")
+            print("\n✨ 任務完成！已使用照片:", target)
+            # Open output folder on macOS / Linux.
+            import sys as _sys, subprocess as _sp
+            opener = "open" if _sys.platform == "darwin" else "xdg-open"
+            try:
+                _sp.Popen([opener, "."])
+            except Exception:
+                pass
+    except Exception as e:
+        print(f"\n❌ 出錯: {e}")

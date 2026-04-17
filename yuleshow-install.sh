@@ -47,6 +47,9 @@ sudo cp ubuntu-configuration/bin/* /usr/local/bin
 #######################################################
 
 ~/ubuntu-configuration/batch/yuleshow-python.sh
+# Install every CLI tool + Python library the bin/yuleshow-* scripts need
+# (exiftool, poppler, libheif, Pillow, pillow-heif, pdf2image, opencc, ...).
+~/ubuntu-configuration/batch/yuleshow-bin-tools.sh
 # comment the following line for test the script
 ~/ubuntu-configuration/batch/yuleshow-fonts.sh
 ~/ubuntu-configuration/batch/yuleshow-flatpak.sh

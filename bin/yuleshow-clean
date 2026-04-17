@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+# yuleshow-clean: cross-platform maintenance (macOS + Ubuntu/Mint).
+set -u
+
+echo "🚀 Starting maintenance for 梅璽閣主..."
+
+OS="$(uname -s)"
+
+# 0. Keep sudo alive for the whole run
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+# ========== Homebrew / APT cleanup ==========
+if command -v brew >/dev/null 2>&1; then
+    echo "📦 Cleaning Homebrew..."
+    export HOMEBREW_NO_AUTO_UPDATE=1
+    brew cleanup -s
+fi
+if command -v apt >/dev/null 2>&1; then
+    echo "📦 Cleaning APT..."
+    sudo apt-get -y autoremove
+    sudo apt-get -y autoclean
+    sudo apt-get -y clean
+fi
+if command -v flatpak >/dev/null 2>&1; then
+    echo "📦 Flatpak uninstall unused..."
+    flatpak uninstall --unused -y || true
+fi
+if command -v snap >/dev/null 2>&1; then
+    echo "📦 Snap: remove disabled revisions..."
+    snap list --all 2>/dev/null | awk '/disabled/{print $1, $3}' | \
+        while read -r name rev; do sudo snap remove "$name" --revision="$rev" || true; done
+fi
+
+# ========== OS-specific extras ==========
+case "$OS" in
+Darwin)
+    echo "🛡  macOS: disable .DS_Store on USB/network volumes..."
+    defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+    defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+    echo "🧹 Purging inactive RAM..."
+    sudo purge
+
+    ADOBE_COMMON="$HOME/Library/Application Support/Adobe/Common"
+    if [ -d "$ADOBE_COMMON" ]; then
+        echo "🎬 Clearing Adobe Premiere cache..."
+        rm -rf "$ADOBE_COMMON/Media Cache/"*        2>/dev/null
+        rm -rf "$ADOBE_COMMON/Media Cache Files/"*  2>/dev/null
+        rm -rf "$ADOBE_COMMON/Peak Files/"*         2>/dev/null
+        rm -rf "$ADOBE_COMMON/PTX/"*                2>/dev/null
+    fi
+
+    echo "🔗 Merging AppleDouble files..."
+    [ -d "$HOME/yuleshow-github" ] && dot_clean -m "$HOME/yuleshow-github"
+    [ -d "$HOME/Pictures" ]        && dot_clean -m "$HOME/Pictures"
+
+    echo "🔍 Removing .DS_Store in common folders..."
+    for dir in Desktop Downloads Documents Pictures; do
+        [ -d "$HOME/$dir" ] && find "$HOME/$dir" -name ".DS_Store" -depth -exec rm {} \; 2>/dev/null
+    done
+
+    echo "📂 Clearing user caches (protecting Homebrew cache)..."
+    find "$HOME/Library/Caches" -mindepth 1 -maxdepth 1 ! -name "Homebrew" -exec rm -rf {} \; 2>/dev/null
+    ;;
+Linux)
+    echo "🗑  Linux: clearing user cache (~/.cache)..."
+    find "$HOME/.cache" -mindepth 1 -maxdepth 1 -exec rm -rf {} \; 2>/dev/null
+
+    echo "📰 Vacuuming journald to 200M..."
+    sudo journalctl --vacuum-size=200M || true
+
+    echo "🗂  Thumbnail cache..."
+    rm -rf "$HOME/.cache/thumbnails/"* 2>/dev/null || true
+    ;;
+*)
+    echo "ℹ️  OS '$OS' not specifically handled; generic cleanup done."
+    ;;
+esac
+
+echo "✨ Maintenance complete!"
