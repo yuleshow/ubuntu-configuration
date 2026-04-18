@@ -87,9 +87,18 @@ gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize,max
 
 ## 10. GoldenDict
 
-- Run `yuleshow-goldendict-get-dicts.sh` (from `bin/`) if you want the bundled
-  dictionaries.
-- In **Edit → Dictionaries → Sources**, point it at the extracted folder.
+- The base app is installed by `yuleshow-goldendict.sh` (run by the main
+  installer). The bundled dictionaries are a separate, opt-in download —
+  they're large (~2 GB split into many `.partaa` .. `.partzz` chunks) so
+  they are **not** part of `yuleshow-install.sh`.
+- To fetch them, run the dedicated batch script on its own:
+  ```bash
+  cd ~/ubuntu-configuration/batch
+  ./yuleshow-goldendict-get-dicts.sh
+  ```
+  then concatenate + extract (`cat goldendict-dicts.tar.gz.part* | tar -xz`).
+- In **GoldenDict → Edit → Dictionaries → Sources**, point it at the extracted
+  folder.
 
 ## 11. VirtualBox
 
