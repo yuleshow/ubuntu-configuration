@@ -20,6 +20,30 @@ by area; skip anything that doesn't apply to your machine.
 - In **Settings → Keyboard**, remap any shortcuts you rely on.
 - Toggle **Night Light** in **Settings → Displays**.
 
+## 2a. WhiteSur tweaks
+
+The WhiteSur GTK repo is kept at `~/Applications/WhiteSur-gtk-theme/` so you
+can re-run its `tweaks.sh` any time — for example after switching Firefox
+profiles or reinstalling Dash to Dock:
+
+```bash
+cd ~/Applications/WhiteSur-gtk-theme
+./tweaks.sh -f        # Firefox Monterey theme (close Firefox first!)
+./tweaks.sh -d        # Dash-to-Dock Monterey tweak
+./tweaks.sh -F        # Flatpak app theme overrides (needs flatpak installed)
+sudo ./tweaks.sh -g   # GDM login-screen theme
+```
+
+The installer already runs all four on first install. Heads-up: `-f` fails if
+Firefox is already running, and `-F` is skipped if Flatpak isn't installed
+yet — rerun them manually after closing Firefox / after `yuleshow-flatpak.sh`.
+
+Move window titlebar buttons to the left (macOS-style):
+
+```bash
+gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize,maximize:'
+```
+
 ## 3. Input methods / language
 
 - Open **Settings → Region & Language → Manage Installed Languages**, click
