@@ -181,6 +181,7 @@ run "guake"           "$REPO_DIR"/batch/yuleshow-guake.sh
 # run "whitesur"      "$REPO_DIR"/batch/yuleshow-whitesur.sh   # moved below gnome (needs User Themes + Dash to Dock)
 run "mac-simple"      "$REPO_DIR"/batch/yuleshow-mac-simple.sh
 run "gopeed"          "$REPO_DIR"/batch/yuleshow-gopeed.sh
+run "kopia"           "$REPO_DIR"/batch/yuleshow-kopia.sh
 run "vscode"          "$REPO_DIR"/batch/yuleshow-vscode.sh
 run "wordpress"       "$REPO_DIR"/batch/yuleshow-wordpress.sh
 
