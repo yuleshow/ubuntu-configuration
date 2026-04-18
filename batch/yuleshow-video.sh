@@ -30,4 +30,6 @@ sudo snap install vidcutter || flatpak install -y flathub com.ozmartians.VidCutt
 
 sudo apt install mkvtoolnix -y
 sudo apt install mkvtoolnix-gui -y
+# Aegisub: subtitle editor (.ass/.srt). Try apt first, fall back to flatpak.
+sudo apt install -y aegisub || flatpak install -y flathub org.aegisub.Aegisub || true
 sudo cp ~/ubuntu-configuration/bin/batch_convert.sh /usr/local/bin
