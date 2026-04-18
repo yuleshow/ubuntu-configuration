@@ -62,7 +62,7 @@ After installation;
   - Indicator Stickynotes
   - Insync
   - Plank
-  - Albert
+  - Ulauncher
     - Set Hotkey to Alt+L
     - Select Extensions
   - Indicator Sensors `indicator-sensors`
