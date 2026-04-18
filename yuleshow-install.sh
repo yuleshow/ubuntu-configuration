@@ -171,7 +171,6 @@ run "language"        "$REPO_DIR"/batch/yuleshow-language.sh
 # run "wechat"        "$REPO_DIR"/batch/yuleshow-wechat.sh
 run "virtualbox"      "$REPO_DIR"/batch/yuleshow-virtualbox.sh
 run "cleaner"         "$REPO_DIR"/batch/yuleshow-cleaner.sh
-run "whatever"        "$REPO_DIR"/batch/yuleshow-whatever.sh
 # run "aria2"         "$REPO_DIR"/batch/yuleshow-aria2.sh
 run "smartgit"        "$REPO_DIR"/batch/yuleshow-smartgit.sh
 run "calibre"         "$REPO_DIR"/batch/yuleshow-calibre.sh
