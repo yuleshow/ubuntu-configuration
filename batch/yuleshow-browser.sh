@@ -2,14 +2,15 @@
 # Each is isolated so a failure in one does not skip the others.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# -------- Google Chrome (amd64 only) ---------------------------------------
+# -------- Google Chrome (amd64 only; Chromium on arm64) --------------------
 if [ "$(dpkg --print-architecture)" = "amd64" ]; then
     wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
         && sudo dpkg -i google-chrome-stable_current_amd64.deb \
         && sudo apt-get install -f -y
     rm -f google-chrome-stable_current_amd64.deb
 else
-    echo "Skipping google-chrome (no arm64 build); Edge + Chromium cover that slot."
+    echo "Skipping google-chrome (no arm64 build); installing Chromium instead."
+    sudo snap install chromium || sudo apt install -y chromium-browser || true
 fi
 
 # -------- Microsoft Edge stable (amd64 only; no arm64 build) ---------------
@@ -22,8 +23,7 @@ if [ "$(dpkg --print-architecture)" = "amd64" ]; then
     sudo apt install -y microsoft-edge-stable || \
         echo "microsoft-edge-stable install failed; continuing."
 else
-    echo "Skipping microsoft-edge-stable (upstream publishes amd64 only); installing Chromium instead."
-    sudo snap install chromium || sudo apt install -y chromium-browser || true
+    echo "Skipping microsoft-edge-stable (upstream publishes amd64 only)."
 fi
 
 # -------- Tor Browser (via torbrowser-launcher) ----------------------------
