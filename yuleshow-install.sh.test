@@ -68,7 +68,8 @@ sudo cp ubuntu-configuration/bin/* /usr/local/bin
 ~/ubuntu-configuration/batch/yuleshow-guake.sh
 # ~/ubuntu-configuration/batch/yuleshow-macbuntu.sh
 ~/ubuntu-configuration/batch/yuleshow-mac-simple.sh
-~/ubuntu-configuration/batch/yuleshow-xdm.sh
+~/ubuntu-configuration/batch/yuleshow-gopeed.sh
+~/ubuntu-configuration/batch/yuleshow-vscode.sh
 ~/ubuntu-configuration/batch/yuleshow-wordpress.sh
 
 ~/ubuntu-configuration/batch/yuleshow-gnome.sh

@@ -380,23 +380,6 @@ install the chrome extension from https://github.com/acgotaku/BaiduExporter
 install the chrome extension AriaNG https://github.com/mayswind/AriaNg
 also check this https://greasyfork.org/zh-CN/scripts/40496-ci-aria2%E7%99%BE%E5%BA%A6%E4%BA%91%E7%9B%98%E5%A2%9E%E5%BC%BA%E7%89%88
 status webpage http://aria2.me/aria-ng/#!/downloading
-* ipad_charge, the ipad charge controll, doesn't work on 18.04 yet
-<pre>
-sudo apt-get install libusb-1.0-0 libusb-1.0-0-dev
-git clone https://github.com/mkorenkov/ipad_charge.git
-cd ipad_charge/
-make
-sudo make install
-</pre>
-in case the commputer can't recognize the ipad
-<pre>sudo usbmuxd -u -U usbmux
-</pre>
-or set the alias
-<pre>alias reset_usb='sudo usbmuxd -u -U usbmux'
-</pre> 
-or 
-<pre>sudo systemctl restart usbmuxd
-</pre> same to restart usbmuxd
 * virtualbox, the virtual machine from Oracle VM
 https://www.virtualbox.org/wiki/Linux_Downloads
 * smartgit, the github client

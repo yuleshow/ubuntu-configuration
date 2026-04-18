@@ -1,3 +1,0 @@
-exiv2 rename *.JPG
-rename 's/\.JPG$/-X-T1.JPG/' *.JPG
-ls

@@ -180,7 +180,8 @@ run "baidu"           "$REPO_DIR"/batch/yuleshow-baidu.sh
 run "guake"           "$REPO_DIR"/batch/yuleshow-guake.sh
 # run "whitesur"      "$REPO_DIR"/batch/yuleshow-whitesur.sh   # replaces the old macbuntu stack
 run "mac-simple"      "$REPO_DIR"/batch/yuleshow-mac-simple.sh
-run "xdm"             "$REPO_DIR"/batch/yuleshow-xdm.sh
+run "gopeed"          "$REPO_DIR"/batch/yuleshow-gopeed.sh
+run "vscode"          "$REPO_DIR"/batch/yuleshow-vscode.sh
 run "wordpress"       "$REPO_DIR"/batch/yuleshow-wordpress.sh
 
 run "gnome"           "$REPO_DIR"/batch/yuleshow-gnome.sh

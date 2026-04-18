@@ -1,5 +1,3 @@
-
-~/ubuntu-configuration/batch/yuleshow-ipadcharge.sh
 # iphone
 sudo apt-get install libtool m4 -y
 # pkg-config + autoconf-archive provide the PKG_CHECK_MODULES m4 macro used by
