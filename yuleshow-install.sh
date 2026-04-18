@@ -174,7 +174,6 @@ run "cleaner"         "$REPO_DIR"/batch/yuleshow-cleaner.sh
 run "whatever"        "$REPO_DIR"/batch/yuleshow-whatever.sh
 # run "aria2"         "$REPO_DIR"/batch/yuleshow-aria2.sh
 run "smartgit"        "$REPO_DIR"/batch/yuleshow-smartgit.sh
-run "rename"          "$REPO_DIR"/batch/yuleshow-rename.sh
 run "calibre"         "$REPO_DIR"/batch/yuleshow-calibre.sh
 run "baidu"           "$REPO_DIR"/batch/yuleshow-baidu.sh
 run "guake"           "$REPO_DIR"/batch/yuleshow-guake.sh
