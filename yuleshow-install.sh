@@ -123,7 +123,8 @@ run "install snap"                       sudo apt install snap -y
 run "install curl"                       sudo apt install curl -y
 run "install automake"                   sudo apt install automake -y
 run "install xz-utils"                   sudo apt install xz-utils -y               # for tar.xz
-run "install rar/7z"                     sudo apt install rar unrar p7zip-full p7zip-rar -y
+# 'rar' is non-free and no longer published for 24.04+; keep only the free unpackers.
+run "install unrar/7z"                   sudo apt install unrar p7zip-full p7zip-rar -y
 run "install openjdk-17-jre"             sudo apt install openjdk-17-jre -y
 run "install ubuntu-restricted-addons"   sudo apt install ubuntu-restricted-addons -y
 run "install software-properties-common" sudo apt install software-properties-common -y

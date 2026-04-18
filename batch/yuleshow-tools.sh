@@ -64,7 +64,8 @@ sudo apt install gparted -y
 sudo apt install synaptic -y
 sudo apt install bleachbit -y
 sudo apt install dconf-editor -y
-sudo apt install preload -y
+# 'preload' was removed from Ubuntu 24.04+; skip if unavailable.
+sudo apt install preload -y || true
 sudo apt install gufw -y
 
 sudo apt install plocate -y

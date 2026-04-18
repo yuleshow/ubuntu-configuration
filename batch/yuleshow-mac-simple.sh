@@ -25,12 +25,21 @@ sudo apt install libpython3.12 -y
 sudo apt install qtdeclarative5-dev -y
 sudo apt install libqt5quick5 -y
 
-# Albert launcher (latest) from the project's official openSUSE OBS repo for Ubuntu 24.04.
-# Reference: https://albertlauncher.github.io/installing/
-wget -qO- https://download.opensuse.org/repositories/home:manuelschneid3r/xUbuntu_24.04/Release.key \
-    | gpg --dearmor \
-    | sudo tee /etc/apt/trusted.gpg.d/home_manuelschneid3r.gpg > /dev/null
-echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_24.04/ /' \
-    | sudo tee /etc/apt/sources.list.d/home:manuelschneid3r.list
-sudo apt update
-sudo apt install -y albert
+# Albert launcher. Prefer the Ubuntu universe package (available on 24.04+);
+# fall back to the openSUSE OBS build for the closest matching Ubuntu release.
+if ! sudo apt install -y albert; then
+    UBU_VER="$(lsb_release -rs 2>/dev/null || echo 24.04)"
+    # OBS publishes xUbuntu_22.04 / 24.04 / 25.04. Pick the newest <= current.
+    case "$UBU_VER" in
+        25.*|26.*) OBS_SERIES=xUbuntu_25.04 ;;
+        24.*)      OBS_SERIES=xUbuntu_24.04 ;;
+        *)         OBS_SERIES=xUbuntu_22.04 ;;
+    esac
+    wget -qO- "https://download.opensuse.org/repositories/home:manuelschneid3r/${OBS_SERIES}/Release.key" \
+        | gpg --dearmor \
+        | sudo tee /etc/apt/trusted.gpg.d/home_manuelschneid3r.gpg > /dev/null
+    echo "deb http://download.opensuse.org/repositories/home:/manuelschneid3r/${OBS_SERIES}/ /" \
+        | sudo tee /etc/apt/sources.list.d/home:manuelschneid3r.list
+    sudo apt update || true
+    sudo apt install -y albert || echo "Skipping albert (no build for ${OBS_SERIES})."
+fi

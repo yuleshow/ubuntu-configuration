@@ -1,4 +1,7 @@
-sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+# Calibre official installer. Do not rely on `sudo -v` (it fails under an
+# already-rooted non-interactive shell); pipe straight to sudo sh.
+wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh \
+    | sudo env PATH="$PATH" sh /dev/stdin isolated=y
 
 
 # if [ -d ~/Applications ]

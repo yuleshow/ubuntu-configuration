@@ -2,6 +2,10 @@
 ~/ubuntu-configuration/batch/yuleshow-ipadcharge.sh
 # iphone
 sudo apt-get install libtool m4 -y
+# pkg-config + autoconf-archive provide the PKG_CHECK_MODULES m4 macro used by
+# libimobiledevice's autogen.sh; without them configure bails with a syntax
+# error near PKG_CHECK_MODULES(libusb, libusb-1.0 >= 1.0.9).
+sudo apt-get install pkg-config autoconf-archive -y
 sudo apt install libimobiledevice-utils -y
 sudo apt install ifuse -y
 sudo apt install libusb-1.0-0-dev -y
@@ -82,10 +86,12 @@ cd ..
 sudo rm -r -f usbmuxd
 
 
-# For install vips and tifig directly
-sudo apt install libvips -y
+# libvips provides `vips` which covers what we used to use tifig for.
+sudo apt install libvips42t64 -y || sudo apt install libvips -y
 sudo apt install libvips-tools -y
-sudo snap install tifig
+# `tifig` snap is amd64-only and upstream is archived; use `heif-convert`
+# (libheif-examples) as the HEIC -> JPEG tool instead. Works on all arches.
+sudo apt install -y libheif-examples
 
 # For compile vips and tifig
 # ~/ubuntu-configuration/batch/yuleshow-vips.sh

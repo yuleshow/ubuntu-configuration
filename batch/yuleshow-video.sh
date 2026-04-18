@@ -18,10 +18,14 @@ sudo apt install ffmpeg -y
 # snap install playlist-dl
 
 ~/ubuntu-configuration/batch/yuleshow-vlc.sh
-~/ubuntu-configuration/batch/yuleshow-clipgrab.sh
+# ClipGrab is unmaintained (last release 2021, AppImage URL is now 404);
+# yt-dlp above covers the same use case.
+# ~/ubuntu-configuration/batch/yuleshow-clipgrab.sh
 
-sudo add-apt-repository ppa:ozmartian/apps -y
-sudo apt install vidcutter -y
+# VidCutter PPA has no builds for 24.04+ on launchpad; try flatpak/snap instead.
+# sudo add-apt-repository ppa:ozmartian/apps -y
+# sudo apt install vidcutter -y
+sudo snap install vidcutter || flatpak install -y flathub com.ozmartians.VidCutter || true
 
 
 sudo apt install mkvtoolnix -y

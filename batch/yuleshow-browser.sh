@@ -1,8 +1,12 @@
-# chrome
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 
-sudo dpkg -i google-chrome*
-sudo apt-get install -f
-rm google-chrome-stable_current_amd64.deb
+# chrome (amd64-only: Google does not publish google-chrome-stable for arm64)
+if [ "$(dpkg --print-architecture)" = "amd64" ]; then
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    sudo dpkg -i google-chrome*
+    sudo apt-get install -f -y
+    rm google-chrome-stable_current_amd64.deb
+else
+    echo "Skipping google-chrome (no arm64 build); use Microsoft Edge or Chromium instead."
+fi
 
 
 # Microsoft Edge (stable) via the official Microsoft apt repo.
