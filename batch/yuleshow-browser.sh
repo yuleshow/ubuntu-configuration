@@ -26,6 +26,18 @@ else
     echo "Skipping microsoft-edge-stable (upstream publishes amd64 only)."
 fi
 
+# -------- Opera stable (amd64 only; no arm64 build) -----------------------
+if [ "$(dpkg --print-architecture)" = "amd64" ]; then
+    wget -qO- https://deb.opera.com/archive.key \
+        | sudo gpg --dearmor --yes -o /usr/share/keyrings/opera.gpg
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/opera.gpg] https://deb.opera.com/opera-stable/ stable non-free" \
+        | sudo tee /etc/apt/sources.list.d/opera-stable.list
+    sudo apt update || true
+    sudo apt install -y opera-stable || echo "opera-stable install failed; continuing."
+else
+    echo "Skipping opera-stable (upstream publishes amd64 only)."
+fi
+
 # -------- Tor Browser (via torbrowser-launcher) ----------------------------
 "$SCRIPT_DIR"/yuleshow-tor.sh
 
