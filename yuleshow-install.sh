@@ -190,8 +190,6 @@ run "whitesur"        "$REPO_DIR"/batch/yuleshow-whitesur.sh
 run "audio"           "$REPO_DIR"/batch/yuleshow-audio.sh
 run "tools"           "$REPO_DIR"/batch/yuleshow-tools.sh
 
-# run "vips"          "$REPO_DIR"/batch/yuleshow-vips.sh   # moved to iphone batch
-# run "tifig"         "$REPO_DIR"/batch/yuleshow-tifig.sh  # moved to iphone batch
 # run "crossover"     "$REPO_DIR"/batch/yuleshow-crossover.sh   # disabled by request
 run "telegram"        "$REPO_DIR"/batch/yuleshow-telegram.sh
 run "pdf"             "$REPO_DIR"/batch/yuleshow-pdf.sh
