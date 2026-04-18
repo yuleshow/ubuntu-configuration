@@ -11,21 +11,26 @@ sudo apt install -y gnome-shell-extension-manager \
     || flatpak install -y flathub com.mattjakeman.ExtensionManager \
     || true
 
-# Dash to Dock — macOS/Unity-style dock. Ubuntu ships the Ubuntu-Dock fork by
-# default; this installs the upstream extension so it can be toggled/configured
-# from Extension Manager.
-sudo apt install -y gnome-shell-extension-dashtodock || true
+# Dash to Dock + Blur my Shell + User Themes.
+#
+# Ubuntu 25.10 dropped the `gnome-shell-extension-dashtodock` and
+# `gnome-shell-extension-blur-my-shell` packages from the archive, so we
+# install them from extensions.gnome.org via `gnome-extensions-cli` (gext).
+# User Themes is provided by the `gnome-shell-extensions` meta package
+# installed above, so no extra step is needed.
+sudo apt install -y pipx || true
+pipx ensurepath >/dev/null 2>&1 || true
+export PATH="$HOME/.local/bin:$PATH"
+pipx install --force gnome-extensions-cli || true
 
-# Blur my Shell — translucent blur for panel/overview/dash.
-# Upstream: https://github.com/aunetx/blur-my-shell
-sudo apt install -y gnome-shell-extension-blur-my-shell || true
-
-# User Themes — required to apply custom shell themes (e.g. WhiteSur).
-sudo apt install -y gnome-shell-extensions \
-    gnome-shell-extension-manager \
-    gnome-shell-extension-prefs 2>/dev/null || true
-# The shipped 'gnome-shell-extensions' meta already provides user-theme on
-# Ubuntu 24.04; on older/leaner installs fall back to the standalone package.
-sudo apt install -y gnome-shell-extension-user-theme 2>/dev/null || true
+if command -v gext >/dev/null 2>&1; then
+    gext install dash-to-dock@micxgx.gmail.com || true
+    gext install blur-my-shell@aunetx           || true
+    gext enable  user-theme@gnome-shell-extensions.gcampax.github.com || true
+    gext enable  dash-to-dock@micxgx.gmail.com  || true
+    gext enable  blur-my-shell@aunetx           || true
+else
+    echo "gext unavailable; install Dash to Dock / Blur my Shell via Extension Manager."
+fi
 
 gsettings set org.gnome.desktop.interface show-battery-percentage true
