@@ -180,6 +180,7 @@ run "guake"           "$REPO_DIR"/batch/yuleshow-guake.sh
 run "mac-simple"      "$REPO_DIR"/batch/yuleshow-mac-simple.sh
 run "gopeed"          "$REPO_DIR"/batch/yuleshow-gopeed.sh
 run "kopia"           "$REPO_DIR"/batch/yuleshow-kopia.sh
+run "rescuezilla"     "$REPO_DIR"/batch/yuleshow-rescuezilla.sh
 run "vscode"          "$REPO_DIR"/batch/yuleshow-vscode.sh
 run "wordpress"       "$REPO_DIR"/batch/yuleshow-wordpress.sh
 
