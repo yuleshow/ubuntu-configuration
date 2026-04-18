@@ -71,6 +71,47 @@ finish() {
 trap finish EXIT
 
 # ---------------------------------------------------------------------------
+# Unattended mode — make every downstream apt / dpkg / needrestart call
+# non-interactive. Applies to every batch/yuleshow-*.sh invoked below.
+# ---------------------------------------------------------------------------
+export DEBIAN_FRONTEND=noninteractive
+export DEBIAN_PRIORITY=critical
+export NEEDRESTART_MODE=a         # auto-restart services
+export NEEDRESTART_SUSPEND=1      # suppress the needrestart TUI
+
+# apt / dpkg global defaults: always assume yes, keep existing config files,
+# don't use a pty (so output stays log-friendly).
+sudo tee /etc/apt/apt.conf.d/99-yuleshow-unattended >/dev/null <<'EOF'
+APT::Get::Assume-Yes "true";
+APT::Get::Fix-Broken "true";
+Dpkg::Use-Pty "0";
+Dpkg::Options {
+    "--force-confdef";
+    "--force-confold";
+};
+EOF
+
+# Same defaults for bare `dpkg -i …` calls in batch scripts.
+sudo tee /etc/dpkg/dpkg.cfg.d/99-yuleshow-unattended >/dev/null <<'EOF'
+force-confdef
+force-confold
+EOF
+
+# needrestart: auto-restart services, skip kernel-upgrade prompt.
+if [ -d /etc/needrestart/conf.d ]; then
+    sudo tee /etc/needrestart/conf.d/99-yuleshow-unattended.conf >/dev/null <<'EOF'
+$nrconf{restart} = 'a';
+$nrconf{kernelhints} = 0;
+EOF
+fi
+
+# Let the env vars above survive `sudo`.
+sudo tee /etc/sudoers.d/99-yuleshow-unattended >/dev/null <<'EOF'
+Defaults env_keep += "DEBIAN_FRONTEND DEBIAN_PRIORITY NEEDRESTART_MODE NEEDRESTART_SUSPEND"
+EOF
+sudo chmod 0440 /etc/sudoers.d/99-yuleshow-unattended
+
+# ---------------------------------------------------------------------------
 # Prerequisites and repo clone
 # ---------------------------------------------------------------------------
 run "apt update"                         sudo apt update
