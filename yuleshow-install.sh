@@ -1,5 +1,10 @@
+#!/usr/bin/env bash
+# Resolve the directory of this script so the batch/ calls below work no
+# matter the current working directory (and even when invoked via sudo).
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # begin
-# ~/ubuntu-configuration/batch/yuleshow-begin.sh
+# "$SCRIPT_DIR"/batch/yuleshow-begin.sh
 
 # Initial
 sudo apt update
@@ -38,7 +43,7 @@ fi
 git clone https://github.com/yuleshow/ubuntu-configuration.git
 
 # copy bin files
-sudo cp ubuntu-configuration/bin/* /usr/local/bin
+sudo cp "$SCRIPT_DIR"/bin/* /usr/local/bin
 
 
 
@@ -46,55 +51,55 @@ sudo cp ubuntu-configuration/bin/* /usr/local/bin
 ######### above imported from yuleshow-begin.sh
 #######################################################
 
-~/ubuntu-configuration/batch/yuleshow-python.sh
+"$SCRIPT_DIR"/batch/yuleshow-python.sh
 # Install every CLI tool + Python library the bin/yuleshow-* scripts need
 # (exiftool, poppler, libheif, Pillow, pillow-heif, pdf2image, opencc, ...).
-~/ubuntu-configuration/batch/yuleshow-bin-tools.sh
+"$SCRIPT_DIR"/batch/yuleshow-bin-tools.sh
 # comment the following line for test the script
-~/ubuntu-configuration/batch/yuleshow-fonts.sh
-~/ubuntu-configuration/batch/yuleshow-flatpak.sh
-~/ubuntu-configuration/batch/yuleshow-emacs.sh
-~/ubuntu-configuration/batch/yuleshow-browser.sh
-~/ubuntu-configuration/batch/yuleshow-filezilla.sh
-~/ubuntu-configuration/batch/yuleshow-insync.sh
-~/ubuntu-configuration/batch/yuleshow-language.sh
-# ~/ubuntu-configuration/batch/yuleshow-teamviewer.sh
-# ~/ubuntu-configuration/batch/yuleshow-wechat.sh
-~/ubuntu-configuration/batch/yuleshow-virtualbox.sh
-~/ubuntu-configuration/batch/yuleshow-cleaner.sh
-~/ubuntu-configuration/batch/yuleshow-whatever.sh
-# ~/ubuntu-configuration/batch/yuleshow-aria2.sh
-~/ubuntu-configuration/batch/yuleshow-smartgit.sh
-~/ubuntu-configuration/batch/yuleshow-rename.sh
-~/ubuntu-configuration/batch/yuleshow-calibre.sh
-~/ubuntu-configuration/batch/yuleshow-baidu.sh
-~/ubuntu-configuration/batch/yuleshow-guake.sh
-# ~/ubuntu-configuration/batch/yuleshow-macbuntu.sh
-~/ubuntu-configuration/batch/yuleshow-mac-simple.sh
-~/ubuntu-configuration/batch/yuleshow-xdm.sh
-~/ubuntu-configuration/batch/yuleshow-wordpress.sh
+"$SCRIPT_DIR"/batch/yuleshow-fonts.sh
+"$SCRIPT_DIR"/batch/yuleshow-flatpak.sh
+"$SCRIPT_DIR"/batch/yuleshow-emacs.sh
+"$SCRIPT_DIR"/batch/yuleshow-browser.sh
+"$SCRIPT_DIR"/batch/yuleshow-filezilla.sh
+"$SCRIPT_DIR"/batch/yuleshow-insync.sh
+"$SCRIPT_DIR"/batch/yuleshow-language.sh
+# "$SCRIPT_DIR"/batch/yuleshow-teamviewer.sh
+# "$SCRIPT_DIR"/batch/yuleshow-wechat.sh
+"$SCRIPT_DIR"/batch/yuleshow-virtualbox.sh
+"$SCRIPT_DIR"/batch/yuleshow-cleaner.sh
+"$SCRIPT_DIR"/batch/yuleshow-whatever.sh
+# "$SCRIPT_DIR"/batch/yuleshow-aria2.sh
+"$SCRIPT_DIR"/batch/yuleshow-smartgit.sh
+"$SCRIPT_DIR"/batch/yuleshow-rename.sh
+"$SCRIPT_DIR"/batch/yuleshow-calibre.sh
+"$SCRIPT_DIR"/batch/yuleshow-baidu.sh
+"$SCRIPT_DIR"/batch/yuleshow-guake.sh
+# "$SCRIPT_DIR"/batch/yuleshow-whitesur.sh   # replaces the old macbuntu stack
+"$SCRIPT_DIR"/batch/yuleshow-mac-simple.sh
+"$SCRIPT_DIR"/batch/yuleshow-xdm.sh
+"$SCRIPT_DIR"/batch/yuleshow-wordpress.sh
 
-~/ubuntu-configuration/batch/yuleshow-gnome.sh
-# ~/ubuntu-configuration/batch/yuleshow-dupeguru.sh
-~/ubuntu-configuration/batch/yuleshow-audio.sh
-~/ubuntu-configuration/batch/yuleshow-tools.sh
+"$SCRIPT_DIR"/batch/yuleshow-gnome.sh
+# "$SCRIPT_DIR"/batch/yuleshow-dupeguru.sh
+"$SCRIPT_DIR"/batch/yuleshow-audio.sh
+"$SCRIPT_DIR"/batch/yuleshow-tools.sh
 
-# ~/ubuntu-configuration/batch/yuleshow-vips.sh   # moved to iphone batch
-# ~/ubuntu-configuration/batch/yuleshow-tifig.sh  # moved to iphone batch
-# ~/ubuntu-configuration/batch/yuleshow-crossover.sh   # disabled by request
-~/ubuntu-configuration/batch/yuleshow-telegram.sh
-~/ubuntu-configuration/batch/yuleshow-pdf.sh
+# "$SCRIPT_DIR"/batch/yuleshow-vips.sh   # moved to iphone batch
+# "$SCRIPT_DIR"/batch/yuleshow-tifig.sh  # moved to iphone batch
+# "$SCRIPT_DIR"/batch/yuleshow-crossover.sh   # disabled by request
+"$SCRIPT_DIR"/batch/yuleshow-telegram.sh
+"$SCRIPT_DIR"/batch/yuleshow-pdf.sh
 
 
-# ~/ubuntu-configuration/batch/yuleshow-freefilesync.sh
-~/ubuntu-configuration/batch/yuleshow-goldendict.sh
-~/ubuntu-configuration/batch/yuleshow-postit.sh
-~/ubuntu-configuration/batch/yuleshow-gdm-background.sh
+# "$SCRIPT_DIR"/batch/yuleshow-freefilesync.sh
+"$SCRIPT_DIR"/batch/yuleshow-goldendict.sh
+"$SCRIPT_DIR"/batch/yuleshow-postit.sh
+"$SCRIPT_DIR"/batch/yuleshow-gdm-background.sh
 # comment the following line for test the script
-~/ubuntu-configuration/batch/yuleshow-iphone.sh
-~/ubuntu-configuration/batch/yuleshow-video.sh
-~/ubuntu-configuration/batch/yuleshow-bashrc.sh
+"$SCRIPT_DIR"/batch/yuleshow-iphone.sh
+"$SCRIPT_DIR"/batch/yuleshow-video.sh
+"$SCRIPT_DIR"/batch/yuleshow-bashrc.sh
 
 
 # final
-~/ubuntu-configuration/batch/yuleshow-final.sh
+"$SCRIPT_DIR"/batch/yuleshow-final.sh
