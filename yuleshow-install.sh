@@ -205,7 +205,6 @@ run "gdm-background"  "$REPO_DIR"/batch/yuleshow-gdm-background.sh
 # comment the following line for test the script
 run "iphone"          "$REPO_DIR"/batch/yuleshow-iphone.sh
 run "video"           "$REPO_DIR"/batch/yuleshow-video.sh
-run "bashrc"          "$REPO_DIR"/batch/yuleshow-bashrc.sh
 
 # final
 run "final"           "$REPO_DIR"/batch/yuleshow-final.sh

@@ -128,7 +128,6 @@ gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize,max
 
 ## 15. Shell / dotfiles
 
-- Review `~/.bashrc` — `yuleshow-bashrc.sh` appends a few aliases
   (`reset_usb`, etc.); move them to `~/.bash_aliases` if you prefer.
 - If you use zsh, run `chsh -s $(which zsh)` and install your framework
   (oh-my-zsh / starship / etc.) — the installer does not touch zsh.

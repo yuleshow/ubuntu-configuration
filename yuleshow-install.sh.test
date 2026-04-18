@@ -91,7 +91,6 @@ sudo cp ubuntu-configuration/bin/* /usr/local/bin
 # comment the following line for test the script
 ~/ubuntu-configuration/batch/yuleshow-iphone.sh
 ~/ubuntu-configuration/batch/yuleshow-video.sh
-~/ubuntu-configuration/batch/yuleshow-bashrc.sh
 
 
 # final
