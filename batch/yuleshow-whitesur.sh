@@ -48,8 +48,10 @@ git clone --depth=1 https://github.com/vinceliuice/WhiteSur-cursors.git
 git clone --depth=1 https://github.com/vinceliuice/WhiteSur-wallpapers.git
 (
     cd WhiteSur-wallpapers
-    # -t all : install every WhiteSur wallpaper variant
-    ./install-wallpapers.sh -t all
+    # With no -t/-c/-s flags, install-wallpapers.sh installs every theme
+    # variant (WhiteSur/Monterey/Ventura/Sonoma) in every color at 4k.
+    # Valid -t values are: whitesur | monterey | ventura | sonoma.
+    ./install-wallpapers.sh
 )
 
 # -------- Apply the themes via gsettings -----------------------------------
