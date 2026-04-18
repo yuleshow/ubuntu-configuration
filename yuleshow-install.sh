@@ -178,13 +178,15 @@ run "rename"          "$REPO_DIR"/batch/yuleshow-rename.sh
 run "calibre"         "$REPO_DIR"/batch/yuleshow-calibre.sh
 run "baidu"           "$REPO_DIR"/batch/yuleshow-baidu.sh
 run "guake"           "$REPO_DIR"/batch/yuleshow-guake.sh
-# run "whitesur"      "$REPO_DIR"/batch/yuleshow-whitesur.sh   # replaces the old macbuntu stack
+# run "whitesur"      "$REPO_DIR"/batch/yuleshow-whitesur.sh   # moved below gnome (needs User Themes + Dash to Dock)
 run "mac-simple"      "$REPO_DIR"/batch/yuleshow-mac-simple.sh
 run "gopeed"          "$REPO_DIR"/batch/yuleshow-gopeed.sh
 run "vscode"          "$REPO_DIR"/batch/yuleshow-vscode.sh
 run "wordpress"       "$REPO_DIR"/batch/yuleshow-wordpress.sh
 
 run "gnome"           "$REPO_DIR"/batch/yuleshow-gnome.sh
+# WhiteSur must run AFTER gnome (requires User Themes + Dash to Dock extensions).
+run "whitesur"        "$REPO_DIR"/batch/yuleshow-whitesur.sh
 # run "dupeguru"      "$REPO_DIR"/batch/yuleshow-dupeguru.sh
 run "audio"           "$REPO_DIR"/batch/yuleshow-audio.sh
 run "tools"           "$REPO_DIR"/batch/yuleshow-tools.sh
