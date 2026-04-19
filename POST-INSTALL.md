@@ -16,25 +16,24 @@ by area; skip anything that doesn't apply to your machine.
   - User Themes
   - Dash to Dock
   - Blur my Shell
-- Apply the shell theme in **GNOME Tweaks → Appearance → Shell** (e.g. WhiteSur).
+- Apply the shell theme in **GNOME Tweaks → Appearance → Shell** (e.g. MacTahoe).
 - In **Settings → Keyboard**, remap any shortcuts you rely on.
 - Toggle **Night Light** in **Settings → Displays**.
 
-## 2a. WhiteSur tweaks
+## 2a. MacTahoe tweaks
 
-The WhiteSur GTK repo is kept at `~/Applications/WhiteSur-gtk-theme/` so you
+The MacTahoe GTK repo is kept at `~/Applications/MacTahoe-gtk-theme/` so you
 can re-run its `tweaks.sh` any time — for example after switching Firefox
-profiles or reinstalling Dash to Dock:
+profiles:
 
 ```bash
-cd ~/Applications/WhiteSur-gtk-theme
-./tweaks.sh -f        # Firefox Monterey theme (close Firefox first!)
-./tweaks.sh -d        # Dash-to-Dock Monterey tweak
+cd ~/Applications/MacTahoe-gtk-theme
+./tweaks.sh -f        # Firefox theme (close Firefox first!)
 ./tweaks.sh -F        # Flatpak app theme overrides (needs flatpak installed)
 sudo ./tweaks.sh -g   # GDM login-screen theme
 ```
 
-The installer already runs all four on first install. Heads-up: `-f` fails if
+The installer already runs all three on first install. Heads-up: `-f` fails if
 Firefox is already running, and `-F` is skipped if Flatpak isn't installed
 yet — rerun them manually after closing Firefox / after `yuleshow-flatpak.sh`.
 
@@ -148,7 +147,7 @@ corresponding `run` line and re-run the installer if you want them:
 - `yuleshow-aria2.sh` — aria2 + BaiduExporter RPC setup
 - `yuleshow-teamviewer.sh`
 - `yuleshow-wechat.sh`
-- `yuleshow-whitesur.sh` — full WhiteSur GTK + icon theme stack
+- `yuleshow-mactahoe.sh` — full MacTahoe GTK + icon theme stack
 - `yuleshow-dupeguru.sh`
 - `yuleshow-crossover.sh`
 - `yuleshow-freefilesync.sh`

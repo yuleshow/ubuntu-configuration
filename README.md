@@ -37,7 +37,6 @@ After installation;
     - Video - VLC
     - Photos - gThumb
   - Sound - System Volume - Over-Amplification - Enable  
-- Change background and lock window background by gdm-background
 - Setup thundermail
   - Install quickFilter extension
     - Load quickFilter settings

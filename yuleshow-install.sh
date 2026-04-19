@@ -12,6 +12,10 @@
 # to contain batch/ or bin/.
 # ---------------------------------------------------------------------------
 
+# Always run from the user's home directory, regardless of where the
+# script was invoked from.
+cd "$HOME" || exit 1
+
 REPO_URL="${REPO_URL:-https://github.com/yuleshow/ubuntu-configuration.git}"
 REPO_DIR="${REPO_DIR:-$HOME/ubuntu-configuration}"
 
@@ -176,7 +180,7 @@ run "smartgit"        "$REPO_DIR"/batch/yuleshow-smartgit.sh
 run "calibre"         "$REPO_DIR"/batch/yuleshow-calibre.sh
 run "baidu"           "$REPO_DIR"/batch/yuleshow-baidu.sh
 run "guake"           "$REPO_DIR"/batch/yuleshow-guake.sh
-# run "whitesur"      "$REPO_DIR"/batch/yuleshow-whitesur.sh   # moved below gnome (needs User Themes + Dash to Dock)
+# run "mactahoe"      "$REPO_DIR"/batch/yuleshow-mactahoe.sh   # moved below gnome (needs User Themes + Dash to Dock)
 run "mac-simple"      "$REPO_DIR"/batch/yuleshow-mac-simple.sh
 run "gopeed"          "$REPO_DIR"/batch/yuleshow-gopeed.sh
 run "kopia"           "$REPO_DIR"/batch/yuleshow-kopia.sh
@@ -185,8 +189,8 @@ run "vscode"          "$REPO_DIR"/batch/yuleshow-vscode.sh
 run "wordpress"       "$REPO_DIR"/batch/yuleshow-wordpress.sh
 
 run "gnome"           "$REPO_DIR"/batch/yuleshow-gnome.sh
-# WhiteSur must run AFTER gnome (requires User Themes + Dash to Dock extensions).
-run "whitesur"        "$REPO_DIR"/batch/yuleshow-whitesur.sh
+# MacTahoe must run AFTER gnome (requires User Themes + Dash to Dock extensions).
+run "mactahoe"        "$REPO_DIR"/batch/yuleshow-mactahoe.sh
 # run "dupeguru"      "$REPO_DIR"/batch/yuleshow-dupeguru.sh
 run "audio"           "$REPO_DIR"/batch/yuleshow-audio.sh
 run "tools"           "$REPO_DIR"/batch/yuleshow-tools.sh
@@ -198,7 +202,6 @@ run "pdf"             "$REPO_DIR"/batch/yuleshow-pdf.sh
 # run "freefilesync"  "$REPO_DIR"/batch/yuleshow-freefilesync.sh
 run "goldendict"      "$REPO_DIR"/batch/yuleshow-goldendict.sh
 run "postit"          "$REPO_DIR"/batch/yuleshow-postit.sh
-run "gdm-background"  "$REPO_DIR"/batch/yuleshow-gdm-background.sh
 # comment the following line for test the script
 run "iphone"          "$REPO_DIR"/batch/yuleshow-iphone.sh
 run "video"           "$REPO_DIR"/batch/yuleshow-video.sh
