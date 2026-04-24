@@ -1,0 +1,6 @@
+SelectAll:
+High-passFilter:FREQUENCY="70" ROLLOFF="dB12"
+Compressor:attackMs="4" compressionRatio="4" kneeWidthDb="5" lookaheadMs="1" makeupGainDb="0" releaseMs="110" showActual="1" showInput="0" showOutput="1" showTarget="0" thresholdDb="-21"
+FilterCurve:f0="90" f1="150" f2="280" f3="4000" f4="7500" f5="8000" f6="10000" FilterLength="8191" InterpolateLin="0" InterpolationMethod="B-spline" v0="-2" v1="2" v2="-4" v3="5" v4="-3" v5="2" v6="0"
+Limiter:kneeWidthDb="2" lookaheadMs="1" makeupTargetDb="-1" releaseMs="20" showActual="1" showInput="0" showOutput="1" showTarget="0" thresholdDb="-4"
+LoudnessNormalization:DualMono="1" LUFSLevel="-14" NormalizeTo="0" RMSLevel="-20" StereoIndependent="0"

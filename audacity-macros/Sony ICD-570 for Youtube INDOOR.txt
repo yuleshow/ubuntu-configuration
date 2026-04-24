@@ -1,0 +1,8 @@
+SelectAll:
+Stereo to Mono:
+ClipFix:GAIN="0" THRESHOLD="95"
+FilterCurve:f0="40" f1="70" f10="12000" f2="150" f3="220" f4="500" f5="1000" f6="3500" f7="5000" f8="7500" f9="10000" FilterLength="8191" InterpolateLin="0" InterpolationMethod="B-spline" v0="-12" v1="-6" v10="0.5" v2="1.5" v3="1" v4="0" v5="0" v6="-3" v7="-4.5" v8="-2" v9="0"
+NoiseGate:ATTACK="10" DECAY="150" GATE-FREQ="8" HOLD="80" LEVEL-REDUCTION="-6" MODE="Gate" STEREO-LINK="LinkStereo" THRESHOLD="-55"
+Compressor:attackMs="0.2" compressionRatio="2.5" kneeWidthDb="5" lookaheadMs="1" makeupGainDb="0" releaseMs="100" showActual="1" showInput="0" showOutput="1" showTarget="0" thresholdDb="-18"
+Limiter:kneeWidthDb="2" lookaheadMs="1" makeupTargetDb="-1" releaseMs="20" showActual="1" showInput="0" showOutput="1" showTarget="0" thresholdDb="-3"
+LoudnessNormalization:DualMono="1" LUFSLevel="-14" NormalizeTo="0" RMSLevel="-20" StereoIndependent="0"
